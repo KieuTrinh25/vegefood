@@ -24,7 +24,9 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request){
+        $request->validate();
         Product::create( $request->all());
+        $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('admin.products.index');
     }
 

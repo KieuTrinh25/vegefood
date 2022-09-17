@@ -12,36 +12,53 @@
                         <p class="card-description">
                             Basic form elements
                         </p>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        
                         <form class="forms-sample" method="post" action="{{ route('admin.products.store') }}">
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                                 <label for="exampleInputName1">Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Name">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
+                                @if($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
                                 <label for="exampleInputName1">Price</label>
-                                <input type="text" class="form-control" name="price" placeholder="price">
+                                <input type="text" class="form-control" name="price" placeholder="price" value="{{ old('price')}}">
+                                @if($errors->has('price'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
                                 <label for="exampleInputName1">Quantity</label>
-                                <input type="text" class="form-control" name="quantity" placeholder="quantity">
+                                <input type="text" class="form-control" name="quantity" placeholder="quantity" value="{{ old('quantity')}}">
+                                @if($errors->has('quantity'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('quantity') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
                                 <label for="exampleInputName1">Images</label>
-                                <input type="text" class="form-control" name="img" placeholder="image">
+                                <input type="text" class="form-control" name="img" placeholder="image" value="{{ old('img')}}">
+                                @if($errors->has('img'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('img') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
                                 <label for="exampleTextarea1">Description</label>
-                                <textarea class="form-control" name="description" rows="4"></textarea>
+                                <input type="text" class="form-control" name="description" placeholder="Description" value="{{ old('description')}}">
+                                @if($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Category</label>

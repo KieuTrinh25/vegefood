@@ -24,9 +24,15 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
                                 <label for="exampleTextarea1">Description</label>
-                                <textarea class="form-control" name="description" rows="4"></textarea>
+                                <input type="text" class="form-control" name="description" placeholder="Descripton" value="{{ old('description') }}">
+                                @if($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                                
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
