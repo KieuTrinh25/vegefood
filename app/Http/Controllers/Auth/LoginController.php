@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -42,21 +44,23 @@ class LoginController extends Controller
     }
 
     //Google Login
-    public function redirectToGoogle(){
+    public function redirectToGoogle()
+    {
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback(){
+    public function handleGoogleCallback()
+    {
         $user = Socialite::driver('google')->stateless()->user();
-        dd($user);
         $this->registerOrLogin($user);
-        
+
         return redirect()->route('home');
     }
-    
-    private function registerOrLogin($data){
+
+    private function registerOrLogin($data)
+    {
         $findUser = User::where('email', $data->email)->first();
-        if(!$findUser){
+        if (!$findUser) {
             $findUser = User::create([
                 'name' => $data->name,
                 'email' => $data->email,
@@ -64,8 +68,10 @@ class LoginController extends Controller
                 'provider_id' => $data->id
             ]);
             $findUser->save();
+            $email = $data->email;
+            $token = Hash::make($email);
+            Mail::to($email) ->send(new \App\Mail\UserActivationEmail($token));
         }
         Auth::login($findUser);
     }
-
 }
