@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -83,4 +85,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Login google
+ */
+Route::get('login/google', function(){
+  return Socialite::driver('google')->redirect();
+})->name('login.google');
+
+Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
