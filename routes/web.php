@@ -95,3 +95,4 @@ Route::get('login/google', function(){
 
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
+Route::get('/users/verify/{token}',[UserController::class,'verify']);
