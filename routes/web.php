@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -26,7 +29,9 @@ Route::get('/productDetail/{productId}', [HomeController::class, 'productDetail'
 Route::get('/category/{id}', [HomeController::class, 'categoryDetail'])->name('category.detail');
 Route::get('/product-search', [HomeController::class, 'productSearch'])->name('product.search');
 
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
+
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
@@ -73,4 +78,20 @@ Route::prefix('admin')->group(function(){
      */
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    
+
+    
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Login google
+ */
+Route::get('login/google', function(){
+  return Socialite::driver('google')->redirect();
+})->name('login.google');
+
+Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
+

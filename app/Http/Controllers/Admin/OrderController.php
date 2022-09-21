@@ -37,7 +37,8 @@ class OrderController extends Controller
     }
 
     public function show($id){       
-        $orderDetail = OrderDetail::find($id);
+        $orderDetail = orderDetail::find($id);
+    //    dd($orderDetail);
         return view('admin.orders.show', array('orderDetail' => $orderDetail)); 
     }
 }

@@ -35,9 +35,9 @@ class ProductRequest extends FormRequest
         ];
     }
 
-    public function failedValidation(Validator $validator){
-        dd($validator->errors());
-    }
+    // public function failedValidation(Validator $validator){
+    //     dd($validator->errors());
+    // }
 
     public function messages()
     {

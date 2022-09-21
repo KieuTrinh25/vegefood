@@ -18,6 +18,7 @@
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
                                 <input value="{{ $category->name }}" type="text" class="form-control" name="name" placeholder="Name">
+                                
                             </div>                            
                             <div class="form-group">
                                 <label for="exampleTextarea1">Description</label>

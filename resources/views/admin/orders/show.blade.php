@@ -16,6 +16,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Code</th>
                                         <th>Product</th>
                                         <th>Quantity</th>
@@ -26,6 +27,7 @@
                                 </thead>
                                 <tbody>                            
                                     <tr>
+                                        <td>{{ $orderDetail->id }}</td>
                                         <td>{{ $orderDetail->order->code }}</td>
                                         <td>{{ $orderDetail->product->name }}</td>
                                         <td>{{ $orderDetail->quantity }}</td>
