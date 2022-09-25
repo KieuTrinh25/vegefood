@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -96,3 +97,8 @@ Route::get('login/google', function(){
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
 Route::get('/users/verify/{token}',[UserController::class,'verify']);
+/**
+ * add to cart
+ */
+Route::get('product/add-to-cart/{id}',[ProductDetailController::class, 'addToCart'])->name('addToCart');
+Route::get('product/show-cart',[ProductDetailController::class, 'showCart'])->name('show_cart');

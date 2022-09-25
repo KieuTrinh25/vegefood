@@ -41,8 +41,11 @@
 				stroke="#F96D00" />
 		</svg></div>
 
-
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<link  href="../Jquery/jquery.multiselect.css" rel="stylesheet"/>
+<link  href="../Jquery/style.css" rel="stylesheet" />
+<link  href="../Jquery/prettify.css" rel="stylesheet" />
+	<script src="{{ asset('js/jquery.min.js') }}"></script> 
 	<script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
 	<script src="{{ asset('js/popper.min.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -57,8 +60,29 @@
 	<script src="{{ asset('js/scrollax.min.js') }}"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="{{ asset ('js/google-map.js') }}"></script>
-	<script src="{{ asset ('js/main.js') }}"></script>
-
+	<script src="{{ asset ('js/main.js') }}"></script> 
+	<script>
+		// $(function (){
+		// 	alert('test');
+		// });
+		function add_to_card(event){
+			event.preventDefault();
+			let urlCart = $(this).data('url');
+			// alert(urlCart);
+			$.ajax({
+				type:"GET",
+				url: urlCart,
+				dataType:'json',
+				success: function(data){
+					console.log(data);
+				}
+				
+			})
+		}
+		$(function(){
+				$('.add_to_card').on('click',add_to_card)
+		})
+	</script>
 </body>
 
 </html>
