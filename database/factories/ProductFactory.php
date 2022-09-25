@@ -20,9 +20,9 @@ class ProductFactory extends Factory
             'name'=>fake()->name(),
             'price'=>fake()->numberBetween(5, 500),
             'quantity'=>fake()->numberBetween(0,100),
-            'img'=>fake()->url(),
             'description'=>fake()->sentence(),
-            'category_id'=>fake()->numberBetween(1,20),
+            'category_id'=>fake()->numberBetween(1,10),
+            'view'=>fake()->numberBetween(0,100),
         ];
     }
 }

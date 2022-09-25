@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserInfo>
  */
-class OrderFactory extends Factory
+class CustomerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,10 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'code'=>fake()->isbn10(),
-            'status'=>fake()->sentence(),
+            'name'=>fake()->name(),
+            'address'=>fake()->sentence(),
+            'note'=>fake()->sentence(),
+            'phone'=>fake()->sentence(),           
             'user_id'=>fake()->numberBetween(1,10),
         ];
     }

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,5 +46,11 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->belongsTo(User::class);
+    }
+    public function rated(){
+        return $this->belongsTo(Rated::class);
+    }
+    public function customers(){
+        return $this->belongsTo(Customer::class);
     }
 }
