@@ -67,12 +67,14 @@
 	          	</div>
 	          	 
           	</div>
-          	<p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+          	<p><a href="#" data-url="{{ route('addToCart', ['id'=>$product->id])}}" 
+				class="btn btn-black py-3 px-5 add_to_card">Add to Cart</a></p>
     			</div>
     		</div>
     	</div>
+
+			
     </section>
 
-    
 
 @endsection
