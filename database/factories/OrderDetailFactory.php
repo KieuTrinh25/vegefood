@@ -20,6 +20,7 @@ class OrderDetailFactory extends Factory
             'order_id'=>fake()->numberBetween(1,100),
             'product_id'=>fake()->numberBetween(1,100),
             'quantity'=>fake()->numberBetween(0,50),
+            
         ];
     }
 }
