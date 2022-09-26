@@ -96,9 +96,17 @@ Route::get('login/google', function(){
 
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
-Route::get('/users/verify/{token}',[UserController::class,'verify']);
 /**
  * add to cart
  */
 Route::get('product/add-to-cart/{id}',[ProductDetailController::class, 'addToCart'])->name('addToCart');
 Route::get('product/show-cart',[ProductDetailController::class, 'showCart'])->name('show_cart');
+/**
+ * Send Mail
+ */
+Route::get('/users/verify/{token}',[UserController::class,'verify']);
+
+/**
+ * Trạng thái đơn hàng
+ */
+Route::resource('bill', 'AdminBillController');

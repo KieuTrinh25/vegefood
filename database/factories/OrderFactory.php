@@ -19,7 +19,11 @@ class OrderFactory extends Factory
         return [
             'code'=>fake()->isbn10(),
             'status'=>fake()->sentence(),
+<<<<<<< HEAD
             'user_id'=>fake()->numberBetween(1,10),
+=======
+            'user_id'=>fake()->numberBetween(1,6),
+>>>>>>> ac76b40 (sold_product)
         ];
     }
 }

@@ -72,6 +72,7 @@
 									alt="Colorlib Template">
 								<span class="status">30%</span>
 								<div class="overlay"></div>
+								<div>{{ $product->sold }}</div>
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
 								<h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
