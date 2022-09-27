@@ -13,7 +13,7 @@
                             Basic form elements
                         </p>
                        
-                        <form class="forms-sample" method="post" action="{{ route('admin.categories.store') }}">
+                        <form class="forms-sample" method="post" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                                 <label for="exampleInputName1">Name</label>
@@ -32,7 +32,15 @@
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
-                                
+                            </div>
+                            <div class="form-group {{ $errors->has('image') ? 'has-error' : ''}}">
+                                <label for="exampleInputName1">Images</label>
+                                <input type="file" class="form-control" name="image">
+                                @if($errors->has('image'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>

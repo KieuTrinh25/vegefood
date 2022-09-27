@@ -23,8 +23,9 @@ class CategoryController extends Controller
     }
 
     public function store(CategoryRequest $request){
-        $request->validated();
-        Category::create($request->all());
+        $category =  Category::create($request->all());
+        $category->addMediaFromRequest('image')->usingName($category->name)->toMediaCollection('categories_images');
+
         $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('admin.categories.index');
     }
