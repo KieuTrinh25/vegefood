@@ -28,7 +28,6 @@ class ProductRequest extends FormRequest
             'name' => 'required|min:5|max:20',
             'price' => 'required|min:1|max:10',
             'quantity' => 'required|min:1|max:10',
-            'img' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             'desciption' => 'required|min:10|max:1000',
             'category_id' => "required"
 
@@ -51,9 +50,9 @@ class ProductRequest extends FormRequest
             'quantity.required' => 'Phai co so luong ',
             'quantity.min' => 'So luong phai lon hon 1 ky tu',
             'quantity.max' => 'So luong phai be hon 10 ky tu',
-            'img.mimes' => 'Phai la loai anh jpeg,jpg,png hoac gif',            
-            'img.required' => 'Phai co anh minh hoa',
-            'img.max' => 'Do dai phai be hon 10000kb',
+            // 'img.mimes' => 'Phai la loai anh jpeg,jpg,png hoac gif',            
+            // 'img.required' => 'Phai co anh minh hoa',
+            // 'img.max' => 'Do dai phai be hon 10000kb',
             'description.required' => 'Phai co mo ta',
             'description.min' => 'Do dai phai lon hon 10 ky tu',
             'description.max' => 'Do dai phai be hon 1000 ky tu',

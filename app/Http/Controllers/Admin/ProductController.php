@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     
     public function index(){
-        $productList = Product::all();
+        $productList = Product::with('category')->get();
         return view('admin.products.index', array(
             'productList' => $productList
         ));
@@ -23,9 +23,10 @@ class ProductController extends Controller
         return view('admin.products.create', array('categoryList' => $categoryList));
     }
 
-    public function store(ProductRequest $request){
-        $request->validate();
-        Product::create( $request->all());
+    public function store(Request $request){
+        $product = Product::create( $request->all());
+        $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('products_images');
+
         $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('admin.products.index');
     }

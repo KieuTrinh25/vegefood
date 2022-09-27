@@ -23,6 +23,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>Images</th>
                                         <th>#</th>
                                         <th>#</th>
                                     </tr>
@@ -32,6 +33,7 @@
                                         <tr>
                                             <td>{{ $cat->name }}</td>
                                             <td>{{ $cat->description }}</td>
+                                            <td><img src="{{ $cat->getFirstMediaUrl('categories_images') }}" width="150px" height="150px"></td>
                                             <td>
                                                 <a href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a>
                                             </td>
