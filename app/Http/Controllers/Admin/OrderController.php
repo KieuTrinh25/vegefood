@@ -20,9 +20,8 @@ class OrderController extends Controller
 
     public function edit($id){
         $order = Order::find($id);
-        $userList = User::all();
         $orderList = Order::all();
-        return view('admin.orders.edit', array('order' => $order, 'userList' => $userList, 'orderList' => $orderList));
+        return view('admin.orders.edit', array('order' => $order, 'orderList' => $orderList));
     }
 
     public function update(Request $request, $id){

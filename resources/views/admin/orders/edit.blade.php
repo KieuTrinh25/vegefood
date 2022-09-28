@@ -26,15 +26,12 @@
                             </div> -->
                             <div class="form-group">
                                 <label for="exampleTextarea1">Status: </label> 
-                                <input value="{{ $order->status }}" type="text" class="form-control" name="status" placeholder="status"> 
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleTextarea1">User_id</label>
-                                <select class="form-control" name="user_id" >
-                                    @foreach($userList as $user)
-                                    <option @if($user->id == $order->user_id) selected @endif value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
+                                <select class="form-control" name="status">
+                                    <option value="{{ config('order.not_delivery') }}">Chưa giao</option>
+                                    <option value="{{ config('order.delivery') }}">Đang giao</option>
+                                    <option value="{{ config('order.delivered') }}">Đã giao</option>
                                 </select>
+                                <input value="{{ $order->status }}" type="text" class="form-control" name="status" placeholder="status"> 
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
