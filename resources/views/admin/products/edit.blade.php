@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', @trans('admin.label_all_categories'))
+@section('title', @trans('admin.edit_products'))
 
 @section('content')
     <div class="content-wrapper">
@@ -12,7 +12,7 @@
                         <p class="card-description">
                             Basic form elements
                         </p>
-                        <form class="forms-sample" method="post" action="{{ route('admin.products.update', $product->id) }}">
+                        <form class="forms-sample" method="post" action="{{ route('admin.products.update', $product->id) }}" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="form-group">
@@ -27,10 +27,24 @@
                                 <label for="exampleInputName1">Quantity</label>
                                 <input value="{{$product->quantity }}" type="text" class="form-control" name="quantity" placeholder="quantity">
                             </div>        
-                            <div class="form-group">
-                                <label for="exampleInputName1">Images</label>
-                                <input value="{{$product->img }}" type="text" class="form-control" name="img" placeholder="img">
-                            </div>                         
+                            <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
+                                    <label for="exampleInputName1">Images</label>
+                                    <input type="file" class="form-control" name="image" placeholder="image" value="{{ old('img')}}">
+                                    @if($errors->has('img'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('img') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
+                                    <label for="exampleInputName1">Photos</label>
+                                    <input type="file" class="form-control" name="photo[]" placeholder="image" value="{{ old('img')}}" multiple="" accept="image/png, image/jpeg">
+                                    @if($errors->has('img'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('img') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>                
                             <div class="form-group">
                                 <label for="exampleTextarea1">Description</label>
                                 <textarea class="form-control" name="description" rows="4">{{ $product->description }}</textarea>

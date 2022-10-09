@@ -7,7 +7,11 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+<<<<<<< HEAD
 use App\Http\Controllers\CartController;
+=======
+use App\Http\Controllers\CheckOutController;
+>>>>>>> 66d509a (check_checkout)
 use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -114,5 +118,13 @@ Route::group(['middleware' => ['auth']], function(){
  */
 Route::get('/users/verify/{token}',[UserController::class,'verify']);
 
+/**
+ * Trạng thái đơn hàng
+ */
+Route::resource('bill', 'AdminBillController');
 
+/**
+ * checkout 
+ */
 
+Route::get('/checkout',[CheckOutController::class, 'checkout'])->name('checkout');

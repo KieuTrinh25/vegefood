@@ -12,7 +12,7 @@
                         <p class="card-description">
                             Basic form elements
                         </p>
-                        <form class="forms-sample" method="post" action="{{ route('admin.categories.update', $category->id) }}">
+                        <form class="forms-sample" method="post" action="{{ route('admin.categories.update', $category->id) }}" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="form-group">
@@ -23,6 +23,16 @@
                             <div class="form-group">
                                 <label for="exampleTextarea1">Description</label>
                                 <textarea class="form-control" name="description" rows="4">{{ $category->description }}</textarea>
+                            </div>
+                            <div class="form-group {{ $errors->has('image') ? 'has-error' : ''}}">
+                                <label for="exampleInputName1">Images</label>
+                                <img src="{{ $category->getFirstMediaUrl('categories_images') }}">
+                                <input type="file" class="form-control" name="image">
+                                @if($errors->has('image'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>

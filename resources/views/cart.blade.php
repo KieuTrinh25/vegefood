@@ -84,44 +84,13 @@
                                                 </form>
                                             </td>
                                 </tr>
-                                @endforeach
-                                @endif
+                                        @endforeach
+                                     @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
-            <form action="CheckOutServlet" class="info" method="get">
-                <div class="row justify-content-end">
-                    <div class="col-md-7 mt-5 cart-wrap ftco-animate">
-                        <div class="cart-total mb-3">
-                            <h3>Estimate shipping and tax</h3>
-                            <p>Enter your destination to get a shipping estimate</p>
-                            <div class="form-group">
-                                <label for="">Full Name</label>
-                                <input name="full_name" type="text" class="form-control text-left px-3" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Address</label>
-                                <input name="address" type="text" class="form-control text-left px-3" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Note</label>
-                                <input name="note" type="text" class="form-control text-left px-3" placeholder="">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-5 mt-5 cart-wrap ftco-animate">
-                        <div class="cart-total mb-3">
-                            <h3>Cart Totals</h3>
-                            <th>${total} $</th>
-                        </div>
-                        <p><button type="submit" href="CheckOutServlet"class="btn btn-primary py-3 px-4">Pay</button></p>
-                    </div>
-                </div>
-            </form>
 
         </div>
         </div>

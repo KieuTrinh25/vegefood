@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{{ asset('admin/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
 </head>
 <body>
   <div class="container-scroller">
