@@ -21,7 +21,7 @@ class CustomerFactory extends Factory
             'address'=>fake()->sentence(),
             'note'=>fake()->sentence(),
             'phone'=>fake()->sentence(),           
-            'user_id'=>fake()->numberBetween(1,10),
+            'user_id'=>fake()->numberBetween(1,5),
         ];
     }
 }

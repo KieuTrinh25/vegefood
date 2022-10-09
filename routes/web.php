@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -100,13 +101,18 @@ Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
  * add to cart
  */
 Route::get('product/add-to-cart/{id}',[ProductDetailController::class, 'addToCart'])->name('addToCart');
-Route::get('product/show-cart',[ProductDetailController::class, 'showCart'])->name('show_cart');
+/**
+ * show cart
+ */
+Route::group(['middleware' => ['auth']], function(){
+  Route::get('cart', [CartController::class, 'index'])->name('show.cart');
+  Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
+});
+
 /**
  * Send Mail
  */
 Route::get('/users/verify/{token}',[UserController::class,'verify']);
 
-/**
- * Trạng thái đơn hàng
- */
-Route::resource('bill', 'AdminBillController');
+
+

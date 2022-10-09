@@ -83,6 +83,20 @@
 				$('.add_to_card').on('click',add_to_card)
 		})
 	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sort').on('change',function(){
+				var url = $(this).val();
+				// alert(url);
+				if(url) {
+					windown.location = url;
+				}
+				return false;
+			})
+		})
+	</script>
+
 </body>
 
 </html>

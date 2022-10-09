@@ -19,8 +19,8 @@ class RatedFactory extends Factory
         return [
             'rated'=>fake()->numberBetween(0, 100),
             'content'=>fake()->sentence(),
-            'product_id'=>fake()->numberBetween(1,50),
-            'user_id'=>fake()->numberBetween(1,10),
+            'product_id'=>fake()->numberBetween(1,5),
+            'user_id'=>fake()->numberBetween(1,5),
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Voucher>
@@ -16,12 +18,15 @@ class VoucherFactory extends Factory
      */
     public function definition()
     {
+        $startDate = Carbon::now()->subDays(7);
+        $endDate   = Carbon::now();
         return [
-            'code'=>fake()->name(),
-            'discount'=>fake()->numberBetween(0,100),
-            'quantity'=>fake()->numberBetween(0,100),
-            'time_from'=>fake()->numberBetween(0,100),
-            'time_end'=>fake()->numberBetween(0,100),
+            'code' =>  Str::random(5),
+            'discount' => fake()->numberBetween(0, 100),
+            'quantity' => fake()->numberBetween(0, 100),
+            'quantity_used' => fake()->numberBetween(0, 100),
+            'time_from' => $startDate,
+            'time_end' => $endDate,
         ];
     }
 }

@@ -32,8 +32,5 @@ class ProductDetailController extends Controller
  public function showCart(){ 
     // echo"<pre>";
     //     print_r(session()->get('cart'));
-    $carts = session()->get('cart');
-    
-    return view('cart',compact('carts'));
 }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->String('code', 128);
             $table->float('discount', 5, 2)->default(1);
             $table->integer('quantity')->default(0);
+            $table->integer('quantity_used')->default(0);
             $table->timestamp('time_from')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('time_end')->default(DB::raw('CURRENT_TIMESTAMP'));
             
