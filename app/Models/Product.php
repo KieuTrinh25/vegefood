@@ -9,13 +9,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-<<<<<<< HEAD
-    use HasFactory;
-    protected $fillable = ['name', 'price', 'quantity', 'description', 'category_id','view'];
-=======
     use HasFactory, InteractsWithMedia;
-    protected $fillable = ['name', 'price', 'quantity', 'description', 'category_id'];
->>>>>>> 3ab36a0 (media)
+    protected $fillable = ['name', 'price', 'quantity', 'description', 'category_id','view'];
     
     public function category(){
         return $this->belongsTo(Category::class);

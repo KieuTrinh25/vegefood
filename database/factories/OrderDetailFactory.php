@@ -17,8 +17,8 @@ class OrderDetailFactory extends Factory
     public function definition()
     {
         return [
-            'order_id'=>fake()->numberBetween(1,100),
-            'product_id'=>fake()->numberBetween(1,100),
+            'order_id'=>fake()->numberBetween(1,5),
+            'product_id'=>fake()->numberBetween(1,5),
             'quantity'=>fake()->numberBetween(0,50),
             
         ];

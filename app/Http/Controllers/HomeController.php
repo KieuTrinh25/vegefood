@@ -6,41 +6,50 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $productList = Product::all();
         return view('home', array('productList' => $productList));
     }
 
-    public function productDetail($productId){
+    public function productDetail($productId)
+    {
         $product = Product::find($productId);
         $productList = Product::all();
-        return view('product_detail', array('product' => $product,
-        'productList' => $productList
-    ));
-    }
-
-    public function categoryDetail($categoryId){
-        $category = Category::find($categoryId);
-        $categoryList = Category::all();
-
-        return view('category_detail', 
-        array('category' => $category,
-        'categoryList' => $categoryList
+        return view('product_detail', array(
+            'product' => $product,
+            'productList' => $productList
         ));
     }
 
-    public function productSearch(Request $request){
+    public function categoryDetail($categoryId)
+    {
+        $category = Category::find($categoryId);
+        $categoryList = Category::all();
+
+        return view(
+            'category_detail',
+            array(
+                'category' => $category,
+                'categoryList' => $categoryList
+            )
+        );
+    }
+
+    public function productSearch(Request $request)
+    {
         $productName = $request->input('productName');
 
         $productList = Product::where('name', 'like', "%$productName%")->get();
         $categoryList = Category::all();
-        
-        return view('product_search', array('productList' => $productList,
-            'categoryList' => $categoryList ));
+
+        return view('product_search', array(
+            'productList' => $productList,
+            'categoryList' => $categoryList
+        ));
     }
-
-
 }

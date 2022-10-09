@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         // \App\Models\User::factory(5)->create();
-        //  \App\Models\Category::factory(5)->create();
-        //  \App\Models\Product::factory(1)->create();
-        //  \App\Models\Order::factory(5)->create();
+        // \App\Models\Category::factory(5)->create();
+        // \App\Models\Product::factory(5)->create();
+        // \App\Models\Order::factory(5)->create();
         // \App\Models\OrderDetail::factory(5)->create();
-
+        // \App\Models\Voucher::factory(10)->create();
     }
 }
 

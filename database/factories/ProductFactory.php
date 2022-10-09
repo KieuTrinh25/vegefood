@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'price'=>fake()->numberBetween(5, 500),
             'quantity'=>fake()->numberBetween(0,100),
             'description'=>fake()->sentence(),
-            'category_id'=>fake()->numberBetween(1,10),
+            'category_id'=>fake()->numberBetween(1,5),
             'view'=>fake()->numberBetween(0,100),
         ];
     }
