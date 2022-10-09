@@ -45,12 +45,14 @@ class User extends Authenticatable
     ];
 
     public function orders(){
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Order::class);
     }
+
     public function rated(){
         return $this->belongsTo(Rated::class);
     }
+
     public function customers(){
-        return $this->belongsTo(Customer::class);
+        return $this->hasMany(Customer::class);
     }
 }

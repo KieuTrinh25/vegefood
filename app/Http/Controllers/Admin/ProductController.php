@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -25,8 +24,13 @@ class ProductController extends Controller
 
     public function store(Request $request){
         $product = Product::create( $request->all());
-        $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('products_images');
-
+        $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('thumbnail');
+        if ($request->hasFile('photo')) {
+            $fileAdders = $product->addMultipleMediaFromRequest(['photo'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('photos');
+                });
+        }
         $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('admin.products.index');
     }
@@ -34,12 +38,25 @@ class ProductController extends Controller
     public function edit($id){
         $product = Product::find($id);
         $categoryList = Category::all();
+        
         return view('admin.products.edit', array('product' => $product, 'categoryList' => $categoryList));
     }
 
     public function update(Request $request, $id){
         $product = Product::find($id);
         $product->update( $request->all());
+
+        if($request->hasFile('image')){
+            $product->clearMediaCollection('thumbnail');
+            $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('thumbnail');
+            // if ($request->hasFile('photo')) {
+            //     $product->clearMediaCollection('photos');
+            //     $fileAdders = $product->addMultipleMediaFromRequest(['photo'])
+            //         ->each(function ($fileAdder) {
+            //             $fileAdder->toMediaCollection('photos');
+            //         });
+            // }
+        }
         return redirect()->route('admin.products.index');
     }
 

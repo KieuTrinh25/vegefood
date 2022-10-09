@@ -32,7 +32,7 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->quantity }}</td>
-                                            <td><img src="{{ $product->getFirstMediaUrl('products_images') }}" width="150px" height="150px"></td>
+                                            <td><img src="{{ $product->getFirstMediaUrl('thumbnail') }}" width="150px" height="150px"></td>
                                             <td>{{ $product->description }}</td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>

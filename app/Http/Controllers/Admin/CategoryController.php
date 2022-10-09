@@ -37,7 +37,11 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id){
         $category = Category::find($id);
-        $category->update( $request->all());
+        $category->update($request->all());
+        if($request->hasFile('image')){
+            $category->clearMediaCollection('categories_images');
+            $category->addMediaFromRequest('image')->usingName($category->name)->toMediaCollection('categories_images');
+        }
         return redirect()->route('admin.categories.index');
     }
 
