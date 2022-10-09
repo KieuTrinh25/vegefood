@@ -20,12 +20,12 @@
                     <label for="amount">Sắp xếp theo</label>
                     <form action="{{ route('category.detail', $category->id) }}" method="get">
                         <div class="filter">
-                            <select name="sort_by" id="sort" class="form-control"">
+                            <select name="sort_by" id="sort" class="form-control">
                                 <option value="">--Lọc--</option>
                                 <option value="price">--Giá--</option>
                                 <option value="name">--Lọc theo tên--</option>
                             </select>
-                            <select name="order_by" id="sort" class="form-control"">
+                            <select name="order_by" id="sort" class="form-control">
                                 <option value="asc">--tăng dần--</option>
                                 <option value="desc">--giảm dần--</option>
                             </select>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($category->products as $product)
+                @foreach ($productList as $product)
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product">
                             <a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid"

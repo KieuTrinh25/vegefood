@@ -26,15 +26,24 @@ class HomeController extends Controller
         ));
     }
 
-    public function categoryDetail($categoryId)
-    {
+    public function categoryDetail(Request $request, $categoryId)
+    {        
         $category = Category::find($categoryId);
         $categoryList = Category::all();
 
+        if($request->has('sort_by')){
+            $sort_by = $request->get('sort_by');
+            $order_by = $request->has('order_by') ? $request->get('order_by') : 'asc';
+            $productList = Product::where('category_id', $categoryId)->orderBy($sort_by, $order_by)->get();
+        }else{
+            $productList = $category->products;
+        }
+        
         return view(
             'category_detail',
             array(
                 'category' => $category,
+                'productList' => $productList,
                 'categoryList' => $categoryList
             )
         );
