@@ -11,6 +11,7 @@ class CartController extends Controller
 {
     public function index() {
         $user = Auth::user();
+        // dd(config('order.unpay'));
         $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
         return view('cart', ['order' => $order]);
     }
