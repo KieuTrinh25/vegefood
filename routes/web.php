@@ -7,15 +7,13 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\CheckOutController;
->>>>>>> 66d509a (check_checkout)
 use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use ProductDetailController as GlobalProductDetailController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -101,14 +99,8 @@ Route::get('login/google', function(){
 
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
-/**
- * add to cart
- */
-Route::get('product/add-to-cart/{id}',[ProductDetailController::class, 'addToCart'])->name('addToCart');
-/**
- * show cart
- */
 Route::group(['middleware' => ['auth']], function(){
+  Route::post('product/add-to-cart',[CartController::class, 'addToCart'])->name('addToCart');
   Route::get('cart', [CartController::class, 'index'])->name('show.cart');
   Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
 });
@@ -128,3 +120,8 @@ Route::resource('bill', 'AdminBillController');
  */
 
 Route::get('/checkout',[CheckOutController::class, 'checkout'])->name('checkout');
+Route::get('/users/verify/{token}',[UserController::class,'verify']);
+/**
+ * add to cart
+ */
+

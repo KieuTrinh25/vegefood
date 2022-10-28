@@ -61,41 +61,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="{{ asset ('js/google-map.js') }}"></script>
 	<script src="{{ asset ('js/main.js') }}"></script> 
-	<script>
-		// $(function (){
-		// 	alert('test');
-		// });
-		function add_to_card(event){
-			event.preventDefault();
-			let urlCart = $(this).data('url');
-			// alert(urlCart);
-			$.ajax({
-				type:"GET",
-				url: urlCart,
-				dataType:'json',
-				success: function(data){
-					console.log(data);
-				}
-				
-			})
-		}
-		$(function(){
-				$('.add_to_card').on('click',add_to_card)
-		})
-	</script>
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#sort').on('change',function(){
-				var url = $(this).val();
-				// alert(url);
-				if(url) {
-					windown.location = url;
-				}
-				return false;
-			})
-		})
-	</script>
+	
 
 </body>
 
