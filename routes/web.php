@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use ProductDetailController as GlobalProductDetailController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -98,10 +99,8 @@ Route::get('login/google', function(){
 
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
 
-
- * show cart
- */
 Route::group(['middleware' => ['auth']], function(){
+  Route::post('product/add-to-cart',[CartController::class, 'addToCart'])->name('addToCart');
   Route::get('cart', [CartController::class, 'index'])->name('show.cart');
   Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
 });
@@ -125,4 +124,4 @@ Route::get('/users/verify/{token}',[UserController::class,'verify']);
 /**
  * add to cart
  */
-Route::post('product/add-to-cart',[ProductDetailController::class, 'addToCart'])->name('addToCart');
+

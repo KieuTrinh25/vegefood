@@ -9,22 +9,17 @@
 @endsection
 @section('content')
 
+<form action="{{ route('addToCart')}}" method="POST">
+  @csrf
 	<section class="ftco-section">
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="{{ $product->img }}" class="image-popup"><img src="{{ $product->getFirstMediaUrl('thumbnail') }}" class="img-fluid" alt="Colorlib Template"></a>
-					<div class = "row">
-						@foreach($product->getMedia('photos') as $photo)
-							<div class="col-lg-4 mt-2">
-								<img src="{{ $photo->getUrl() }}" style = "height: 180px; width: 160px ;">
-							</div> 
-						@endforeach
-					</div>									
+    				<a href="{{ $product->img }}" class="image-popup"><img src="{{ $product->img }}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h2>{{ $product->name }}</h2>
-					<h5>Categogy: {{ $product->category->name }}</h5>
+					<h3>Categogy: {{ $product->category->name }}</h3>
 						<div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">5.0</a>
@@ -74,11 +69,13 @@
 	          	</div>
 	          	 
           	</div>
-          	<p><a href="#" data-url="{{ route('addToCart', ['id'=>$product->id])}}" 
-				class="btn btn-black py-3 px-5 add_to_card">Add to Cart</a></p>
-    			</div>
-    		</div>
-    	</div>
+				<input type="hidden" name="product_id" value="{{$product->id}}">
+				<input type="submit" value="Add to Cart"
+				class="btn btn-black py-3 px-5 add_to_card">
+			</div>
+		</div>
+	</div>
+</form>
 
 			
     </section>
