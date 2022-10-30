@@ -15,7 +15,14 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="{{ $product->img }}" class="image-popup"><img src="{{ $product->img }}" class="img-fluid" alt="Colorlib Template"></a>
+					<img src="{{ $product->getFirstMediaUrl('thumbnail') }}" class="img-fluid" alt="Colorlib Template">
+					<div class = "row">
+						@foreach($product->getMedia('photos') as $photo)
+							<div class="col-lg-4 mt-2">
+								<img src="{{ $photo->getUrl() }}" style = "height: 180px; width: 160px ;">
+							</div> 
+						@endforeach
+					</div>			
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h2>{{ $product->name }}</h2>
@@ -37,8 +44,8 @@
 								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
 							</p>
 						</div>
-    				<p class="price"><span>${{ $product->price }}</span></p>
-    				<p>{{ $product->description }}</p>
+    				<h4 class="price" style="color: #fdc020 ;"> {{ currency_format($product->price) }} </h4>
+    				<p >{{ $product->description }}</p>
 						<div class="row mt-4">
 							<div class="col-md-6">
 								<div class="form-group d-flex">

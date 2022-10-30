@@ -6,29 +6,24 @@ use App\Http\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Product;
+use App\Services\Product\ShowProductAction;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    protected $productRepository;
-    public function __construct(ProductRepositoryInterface $repository)
-    {
-        $this->productRepository = $repository; 
-    }
-    
     public function index()
     {
-        $productList = $this->productRepository->list();
+        $productList = resolve(ShowProductAction::class)->run();
         return view('home', array(  'productList' => $productList));
     }
 
     public function productDetail($slug)
     {
-        $product = Product::where('slug', $slug)->first();
-         
-        $productList =  $this->productRepository->list();
+        $product = resolve(ShowProductAction::class)->getProductBySlug($slug);
+        $productList = resolve(ShowProductAction::class)->run();
+
         return view('product_detail', array(
             'product' => $product,
             'productList' => $productList
