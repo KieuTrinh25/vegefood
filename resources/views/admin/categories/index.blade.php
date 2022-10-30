@@ -12,7 +12,7 @@
                         <p class="card-description">
                             Add class <code>.table</code>
                         </p>
-                        @if(session('status'))
+                        @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
@@ -24,8 +24,8 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Images</th>
-                                        <th>#</th>
-                                        <th>#</th>
+                                        <th>Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,16 +33,20 @@
                                         <tr>
                                             <td>{{ $cat->name }}</td>
                                             <td>{{ $cat->description }}</td>
-                                            <td><img src="{{ $cat->getFirstMediaUrl('categories_images') }}" width="150px" height="150px"></td>
+                                            <td><img src="{{ $cat->getFirstMediaUrl('categories_images') }}" width="150px"
+                                                    height="150px"></td>
                                             <td>
-                                                <a href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a>
+                                                <button type="button" class="btn btn-warning"><a
+                                                        href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a></button>
                                             </td>
                                             <td>
-                                                <form method="post" action="{{ route('admin.categories.destroy', $cat->id) }}">
+                                                <form method="post"
+                                                    action="{{ route('admin.categories.destroy', $cat->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label class="badge badge-danger">
-                                                        <button type="submit">Delete</button>
+                                                    <label>
+                                                        {{-- <label class="badge badge-danger"> --}}
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
                                                     </label>
                                                 </form>
                                             </td>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Http\Repositories\Category\CategoryRepositoryInterface;
+>>>>>>> 2e831b9 (login_view)
 use App\Http\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Location;
@@ -10,10 +14,13 @@ use App\Services\Product\ShowProductAction;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index()
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $repository)
     {
         $productList = resolve(ShowProductAction::class)->run();
         return view('home', array(  'productList' => $productList));
@@ -55,9 +62,11 @@ class HomeController extends Controller
 
     public function productSearch(Request $request)
     {
-        $productName = $request->input('productName');
+        $productName = $request->input('product_name');
 
         $productList = Product::where('name', 'like', "%$productName%")->get();
+        $productList = Product::paginate(12);
+
         $categoryList = Category::all();
 
         return view('product_search', array(

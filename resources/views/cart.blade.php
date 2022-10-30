@@ -54,7 +54,8 @@
                                     </td> --}}
                                     @if ($order)
                                         @foreach ($order->orderDetails as $orderDetail)
-                                            <td class="cart-product-name"><img src="{{ $orderDetail->product->getFirstMediaUrl('thumbnail') }}"
+                                            <td class="cart-product-name"><img
+                                                    src="{{ $orderDetail->product->getFirstMediaUrl('thumbnail') }}"
                                                     width="100px"></td>
                                             <td class="cart-product-name"><a href="javascript:void(0)">
                                                     {{ $orderDetail->product->name }}</a>
@@ -82,8 +83,8 @@
                                                 </form>
                                             </td>
                                 </tr>
-                                        @endforeach
-                                     @endif
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
