@@ -101,7 +101,7 @@
 				@foreach($productList as $product)
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid" src="{{ $product->img}}"
+							<a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid" src="{{ $product->getFirstMediaUrl('thumbnail') }}"
 									alt="Colorlib Template">
 								<span class="status">30%</span>
 								<div class="overlay"></div>

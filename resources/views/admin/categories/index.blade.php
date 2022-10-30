@@ -35,14 +35,14 @@
                                             <td>{{ $cat->description }}</td>
                                             <td><img src="{{ $cat->getFirstMediaUrl('categories_images') }}" width="150px" height="150px"></td>
                                             <td>
-                                                <a href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a>
+                                                <a  class="btn btn-outline-primary" href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a>
                                             </td>
                                             <td>
                                                 <form method="post" action="{{ route('admin.categories.destroy', $cat->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label class="badge badge-danger">
-                                                        <button type="submit">Delete</button>
+                                                    <label class="">
+                                                        <button  class="btn btn-outline-primary" type="submit">Delete</button>
                                                     </label>
                                                 </form>
                                             </td>

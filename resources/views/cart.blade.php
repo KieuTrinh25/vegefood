@@ -52,13 +52,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{-- <td class="product-remove">
-                                        <form action="OrderServlet" method="post">
-                                            <input type="hidden" name="action" value="delete">
-                                            <button><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                                            <input type="hidden" name="productId" value="name">
-                                        </form>
-                                    </td> --}}
                                     @if ($order)
                                         @foreach ($order->orderDetails as $orderDetail)
                                             <td class="cart-product-name"><img src="{{ $orderDetail->product->getFirstMediaUrl('thumbnail') }}"
@@ -76,11 +69,11 @@
                                                 </div>
                                             </td>
                                             <td class="product-subtotal"><span class="amount"> ${{ $orderDetail->product->price * $orderDetail->quantity }} </span></td>
-                                            <td class="product-remove">
+                                            <td class="product-remove" >
                                                 <form action="{{ route('cart.delete') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="order_detail_id" value="{{ $orderDetail->id }}">
-                                                    <button type="submit">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                             </td>
                                 </tr>
@@ -88,6 +81,8 @@
                                      @endif
                             </tbody>
                         </table>
+                        <a href="{{route('history')}}"><button class="btn btn-success" style="width: 200px">Trạng thái đơn hàng</button></a> 
+
                     </div>
                 </div>
             </div>

@@ -36,14 +36,14 @@
                                             <td>{{ $product->description }}</td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>
-                                                <a href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
+                                                <a  class="btn btn-outline-primary" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
                                             </td>
                                             <td>
                                                 <form method="post" action="{{ route('admin.products.destroy', $product->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label class="badge badge-danger">
-                                                        <button type="submit">Delete</button>
+                                                    <label class="">
+                                                        <button  class="btn btn-outline-primary" type="submit">Delete</button>
                                                     </label>
                                                 </form>
                                             </td>

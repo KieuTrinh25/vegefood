@@ -19,25 +19,25 @@
                                         <th>Code</th>
                                         <th>Status</th>
                                         <th>User_id</th>
-                                        <th>#</th>
-                                        <th>#</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($orderList as $order)
                                         <tr>
-                                            <td><a href="{{ route( 'admin.orders.show', $order->code) }}">{{ $order->code }}</a></td>
+                                            <td><a href="{{ route( 'admin.orders.show', $order->id) }}">{{ $order->code }}</a></td>
                                             <td>{{ $order->status }}</td>
                                             <td>{{ $order->user->name }}</td>
                                             <td>
-                                                <a href="{{ route('admin.orders.edit', $order->id) }}">Edit</a>
+                                                <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-outline-primary">Edit</a>
                                             </td>
                                             <td>
                                                 <form method="post" action="{{ route('admin.orders.destroy', $order->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label class="badge badge-danger">
-                                                        <button type="submit">Delete</button>
+                                                    <label>
+                                                        <button class="btn btn-outline-primary" type="submit">Delete</button>
                                                     </label>
                                                 </form>
                                             </td>

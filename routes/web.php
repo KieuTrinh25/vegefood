@@ -7,11 +7,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\CheckOutController;
->>>>>>> 66d509a (check_checkout)
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProductDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +33,14 @@ Route::get('/productDetail/{productId}', [HomeController::class, 'productDetail'
 Route::get('/category/{id}', [HomeController::class, 'categoryDetail'])->name('category.detail');
 Route::get('/product-search', [HomeController::class, 'productSearch'])->name('product.search');
 
+Route::get('/history', [HistoryController::class, 'index'])->name('history');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/not_permission', [DashboardController::class, 'not_permission'])->name('admin.not.permission');
+
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
     
@@ -78,19 +80,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
 
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
-
     /**
      * admin users
      */
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
-    
-
-    
+   
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 /**
  * Login google
