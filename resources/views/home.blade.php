@@ -101,14 +101,14 @@
 				@foreach($productList as $product)
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid" src="{{ $product->img}}"
+							<a href="{{ route('product.detail', $product->slug) }}" class="img-prod"><img class="img-fluid" src="{{ $product->img}}"
 									alt="Colorlib Template">
 								<span class="status">30%</span>
 								<div class="overlay"></div>
 								<div>{{ $product->sold }}</div>
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
-								<h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
+								<h3><a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a></h3>
 								<div class="d-flex">
 									<div class="pricing">
 										<p class="price"><span class="mr-2 price-dc">$120.00</span><span
