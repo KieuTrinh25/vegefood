@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
+use App\Models\Customer;
+use App\Models\Location;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class CartController extends Controller 
 {
     public function addToCart(Request $request)
     {
@@ -37,9 +40,15 @@ class CartController extends Controller
 
     public function index() {
         $user = Auth::user();
-        // dd(config('order.unpay'));
+        $locationList = Location::all();
         $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
-        return view('cart', ['order' => $order]);
+        $total = 0;
+        foreach($order->orderDetails  as $orderDetail){
+            $total += $orderDetail->product->price * $orderDetail->quantity   
+            ;
+        }
+        return view('cart', ['order' => $order,'locationList' => $locationList, 'total' => $total, 'user' => $user]);
+
     }
 
     public function deleteOrderDetail(Request $request){
@@ -51,4 +60,16 @@ class CartController extends Controller
         $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
         return view('cart', ['order' => $order]);
     }
+
+    public function create(){
+        $customerList = Customer::all();
+        return view('cart.create', array('customerList' => $customerList));
+    }
+
+    public function store(CustomerRequest $request){
+        $customer =  Customer::create($request->all());
+        $request->session()->flash('status', 'them thanh cong');
+        return redirect()->route('cart.store');
+    }
+
 }

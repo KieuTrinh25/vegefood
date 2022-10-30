@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
+    protected $repository;
+    public function __construct(ProductRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     public function index(){
         $productList = Product::with('category')->get();
         return view('admin.products.index', array(
@@ -23,7 +28,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        $product = Product::create( $request->all());
+        $product = $this->repository->create( $request->all());
         $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('thumbnail');
         if ($request->hasFile('photo')) {
             $fileAdders = $product->addMultipleMediaFromRequest(['photo'])
@@ -36,14 +41,15 @@ class ProductController extends Controller
     }
 
     public function edit($id){
-        $product = Product::find($id);
+
+        $product = $this->repository->find($id);
         $categoryList = Category::all();
         
         return view('admin.products.edit', array('product' => $product, 'categoryList' => $categoryList));
     }
 
     public function update(Request $request, $id){
-        $product = Product::find($id);
+        $product = $this->repository->update($id, $request->all());
         $product->update( $request->all());
 
         if($request->hasFile('image')){
@@ -61,7 +67,7 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        Product::destroy($id);
+        $product = $this->repository->delete( $id);
         return redirect()->route('admin.products.index');
     }
 

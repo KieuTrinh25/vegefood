@@ -2,10 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Exception;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $repositories = [
+        \App\Http\Repositories\Product\ProductRepositoryInterface::class => \App\Http\Repositories\Product\ProductRepository::class,
+    ];
     /**
      * Register any application services.
      *
@@ -13,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        foreach ($this->repositories as $interface => $repository) {
+            App::bind($interface, $repository);
+        }
     }
 
     /**
@@ -23,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        try{
+            $categoryList = Category::all();
+            View::share('categoryList', $categoryList);
+        }catch(Exception $ex){}
     }
 }

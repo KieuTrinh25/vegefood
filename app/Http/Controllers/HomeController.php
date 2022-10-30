@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Category;
+use App\Models\Location;
 use App\Models\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -10,16 +12,23 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    protected $productRepository;
+    public function __construct(ProductRepositoryInterface $repository)
+    {
+        $this->productRepository = $repository; 
+    }
+    
     public function index()
     {
-        $productList = Product::all();
-        return view('home', array('productList' => $productList));
+        $productList = $this->productRepository->list();
+        return view('home', array(  'productList' => $productList));
     }
 
-    public function productDetail($productId)
+    public function productDetail($slug)
     {
-        $product = Product::find($productId);
-        $productList = Product::all();
+        $product = Product::where('slug', $slug)->first();
+         
+        $productList =  $this->productRepository->list();
         return view('product_detail', array(
             'product' => $product,
             'productList' => $productList
@@ -60,5 +69,8 @@ class HomeController extends Controller
             'productList' => $productList,
             'categoryList' => $categoryList
         ));
+    }
+    public function location(Request $request){
+        return Location::where('code', $request->input('code'))->first();
     }
 }

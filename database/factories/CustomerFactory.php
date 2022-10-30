@@ -18,10 +18,11 @@ class CustomerFactory extends Factory
     {
         return [
             'name'=>fake()->name(),
+            'phone'=>fake()->sentence(),
+            'email' => fake()->safeEmail(),
             'address'=>fake()->sentence(),
             'note'=>fake()->sentence(),
-            'phone'=>fake()->sentence(),           
-            'user_id'=>fake()->numberBetween(1,5),
+                    
         ];
     }
 }

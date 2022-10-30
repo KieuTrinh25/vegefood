@@ -29,8 +29,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/productDetail/{productId}', [HomeController::class, 'productDetail'])->name('product.detail');
-Route::get('/category/{id}', [HomeController::class, 'categoryDetail'])->name('category.detail');
+Route::get('/productDetail/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
+Route::get('/category/{slug}', [HomeController::class, 'categoryDetail'])->name('category.detail');
 Route::get('/product-search', [HomeController::class, 'productSearch'])->name('product.search');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
@@ -103,6 +103,10 @@ Route::group(['middleware' => ['auth']], function(){
   Route::post('product/add-to-cart',[CartController::class, 'addToCart'])->name('addToCart');
   Route::get('cart', [CartController::class, 'index'])->name('show.cart');
   Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
+  
+  Route::get('cart/checkout',[CartController::class, 'create'])->name('cart.create');
+  
+  Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 });
 
 /**

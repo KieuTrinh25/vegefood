@@ -8,11 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'address', 'note', 'phone', 'user_id'];
-    public function users(){
+    protected $fillable = ['name', 'phone', 'email', 'address', 'note'];
+    public function users()
+    {
         return $this->belongsTo(User::class);
     }
-    public function products(){
+    public function products()
+    {
         return $this->belongsTo(Product::class);
     }
+    public function locations()
+    {
+        return $this->belongsTo(Location::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

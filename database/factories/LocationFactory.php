@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
  */
-class LocaltionFactory extends Factory
+class LocationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,9 @@ class LocaltionFactory extends Factory
     public function definition()
     {
         return [
-            // 'country'=>fake()->name(),
-            // 'ship'=>fake()->numberBetween(15.000, 40.000),
+            'code' =>fake()->stateAbbr(),
+            'country' =>fake()->city(),
+            'ship' =>fake()->numberBetween(15, 50),
         ];
     }
 }

@@ -45,7 +45,7 @@
 		<link  href="../Jquery/jquery.multiselect.css" rel="stylesheet"/>
 <link  href="../Jquery/style.css" rel="stylesheet" />
 <link  href="../Jquery/prettify.css" rel="stylesheet" />
-	<script src="{{ asset('js/jquery.min.js') }}"></script> 
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
 	<script src="{{ asset('js/popper.min.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -62,7 +62,25 @@
 	<script src="{{ asset ('js/google-map.js') }}"></script>
 	<script src="{{ asset ('js/main.js') }}"></script> 
 	
+	<script src="{{ asset ('js/main.js') }}"></script>
+	<script>
+		$(document).ready(function(){
+			 $('#location').change(function(){
+				find_location($(this).val())
+			 })
+		});
+		function find_location(code){
+			$.ajax({
+				type:"GET",
+				url: 'http://localhost:8000/api/location?code=' + code,
+				dataType:'json',
+				success: function(data){
+					$('#ship').text(data.ship)
+				}
 
+			})
+		}
+	</script>
 </body>
 
 </html>

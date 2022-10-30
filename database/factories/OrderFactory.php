@@ -16,12 +16,12 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'code'=>fake()->isbn10(),
             'status'=>fake()->sentence(),
-
             'user_id'=>fake()->numberBetween(1,5),
-
+            'customer_id'=>fake()->numberBetween(1,5),
         ];
     }
 }

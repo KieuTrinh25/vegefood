@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,15 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
-
-    public function rated(){
+    public function rated()
+    {
         return $this->belongsTo(Rated::class);
     }
 
-    public function customers(){
+    public function customers()
+    {
         return $this->hasMany(Customer::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->String('code', 128);
-            $table->String('status', 128);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->String('status', 128); 
+            $table->integer('user_id')->default(0);
+            $table->integer('customer_id')->default(0);
             $table->timestamps();
         });
     }
