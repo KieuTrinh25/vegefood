@@ -20,26 +20,27 @@
                     <label for="amount">Sắp xếp theo</label>
                     <form action="{{ route('category.detail', $category->id) }}" method="get">
                         <div class="filter">
-                            <select name="sort_by" id="sort" class="form-control">
+                            <select name="sort_by" id="sort" class="form-select">
                                 <option value="">--Lọc--</option>
                                 <option value="price">--Giá--</option>
                                 <option value="name">--Lọc theo tên--</option>
                             </select>
-                            <select name="order_by" id="sort" class="form-control">
+                            <select name="order_by" id="sort" class="form-select">
                                 <option value="asc">--tăng dần--</option>
                                 <option value="desc">--giảm dần--</option>
                             </select>
-                            <button type="submit">Filter</button>
+                            <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
                     </form>
                 </div>
             </div>
+            <br>
             <div class="row">
                 @foreach ($productList as $product)
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product">
                             <a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid"
-                                    src="{{ $product->img }}" alt="Colorlib Template">
+                                    src="{{ $product->getFirstMediaUrl('thumbnail') }}" alt="Colorlib Template">
                                 <span class="status">30%</span>
                                 <div class="overlay"></div>
                             </a>

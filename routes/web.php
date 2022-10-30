@@ -27,14 +27,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
  */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/productDetail/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
 Route::get('/category/{slug}', [HomeController::class, 'categoryDetail'])->name('category.detail');
 Route::get('/product-search', [HomeController::class, 'productSearch'])->name('product.search');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 

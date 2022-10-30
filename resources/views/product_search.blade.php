@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Category Page')
+@section('title', 'Products')
 
 @section('content')
 
@@ -15,40 +15,33 @@
     				</ul>
     			</div>
     		</div>
-    		<div class="row">
-				@foreach($category->products as $product)
+    		
+			<div class="row">
+				@foreach($productList as $product)
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="{{ route('product.detail'), $product->id }}" class="img-prod"><img class="img-fluid" src="{{ $product->img}}" alt="Colorlib Template">
+							<a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid" src="{{ $product->getFirstMediaUrl('thumbnail') }}"
+									alt="Colorlib Template">
 								<span class="status">30%</span>
 								<div class="overlay"></div>
+								<div>{{ $product->sold }}</div>
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
 								<h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
 								<div class="d-flex">
 									<div class="pricing">
-										<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">${{ $product->price}}</span></p>
+										<p class="price"><span class="mr-2 price-dc">$120.00</span><span
+												class="price-sale">${{ $product->price }}</span></p>
 									</div>
 								</div>
-								<div class="bottom-area d-flex px-3">
-									<div class="m-auto d-flex">
-										<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-											<span><i class="ion-ios-menu"></i></span>
-										</a>
-										<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-											<span><i class="ion-ios-cart"></i></span>
-										</a>
-										<a href="#" class="heart d-flex justify-content-center align-items-center ">
-											<span><i class="ion-ios-heart"></i></span>
-										</a>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
-    			@endforeach
-    		</div>
-    		<div class="row mt-5">
+				@endforeach
+			</div>
+			
+    		{{-- <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
@@ -62,7 +55,10 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> --}}
+
+		{{ $productList->links() }}
+		
     	</div>
     </section>
 @endsection
