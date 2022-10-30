@@ -37,7 +37,7 @@
 							aria-haspopup="true" aria-expanded="false">Shop</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 						 		@foreach($categoryList as $category)
-								<a class="dropdown-item" href="{{ route('category.detail', $category->id) }}">{{ $category->name }}</a>
+								<a class="dropdown-item" href="{{ route('category.detail', $category->slug) }}">{{ $category->name }}</a>
 							 	@endforeach
 							</div>
 
