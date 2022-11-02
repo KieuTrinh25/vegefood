@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
-use App\Http\Repositories\Category\CategoryRepositoryInterface;
->>>>>>> 2e831b9 (login_view)
 use App\Http\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Location;
@@ -20,10 +16,11 @@ class HomeController extends Controller
 {
     protected $productRepository;
 
-    public function __construct(ProductRepositoryInterface $repository)
+    public function index()
     {
         $productList = resolve(ShowProductAction::class)->run();
-        return view('home', array(  'productList' => $productList));
+        
+        return view('home', array('productList' => $productList));
     }
 
     public function productDetail($slug)

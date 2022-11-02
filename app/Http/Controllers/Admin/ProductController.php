@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\Product\ProductRepositoryInterface;
+use App\Http\Repositories\Product\ProductRepository;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    protected $repository;
+    protected $productRepository;
 
-    public function __construct(ProductRepositoryInterface $repository)
+    public function __construct(ProductRepository $productRepository)
     {
-        $this->repository = $repository;
+        $this->productRepository = $productRepository;
     }
     
     public function index(){
@@ -30,7 +30,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        $product = $this->repository->create($request->all);
+        $product = $this->productRepository->create($request->all);
 
         $product = Product::create( $request->all());
         $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('thumbnail');
@@ -45,14 +45,14 @@ class ProductController extends Controller
     }
 
     public function edit($id){
-        $product = $this->repository->find($id);
+        $product = $this->productRepository->find($id);
         $categoryList = Category::all();
         
         return view('admin.products.edit', array('product' => $product, 'categoryList' => $categoryList));
     }
 
     public function update(Request $request, $id){
-        $product = $this->repository->update($id, $request->all());
+        $product = $this->productRepository->update($id, $request->all());
 
         if($request->hasFile('image')){
             $product->clearMediaCollection('thumbnail');
@@ -69,7 +69,7 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        $product = $this->repository->delete($id);
+        $product = $this->productRepository->delete($id);
         return redirect()->route('admin.products.index');
     }
 

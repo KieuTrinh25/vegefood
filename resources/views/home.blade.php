@@ -86,7 +86,6 @@
         </div>
     </section>
 
-<<<<<<< HEAD
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center mb-3 pb-3">
@@ -123,46 +122,6 @@
 			</div>
 		</div>
 	</section>
-=======
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center mb-3 pb-3">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Featured Products</span>
-                    <h2 class="mb-4">Our Products</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                @foreach ($productList as $product)
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="product">
-                            <a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid"
-                                    src="{{ $product->getFirstMediaUrl('thumbnail') }}" alt="Colorlib Template">
-                                <span class="status">30%</span>
-                                <div class="overlay"></div>
-                                <div>{{ $product->sold }}</div>
-                            </a>
-                            <div class="text py-3 pb-4 px-3 text-center">
-                                <h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
-                                <div class="d-flex">
-                                    <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span
-                                                class="price-sale">${{ $product->price }}</span></p>
-                                    </div>
-                                </div>
->>>>>>> 2e831b9 (login_view)
-
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            
-        </div>
-    </section>
 
     <section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
         <div class="container">

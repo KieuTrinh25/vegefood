@@ -94,7 +94,7 @@
                         <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">{{ __('Login') }}</h5>
+                        <h5 class="card-title text-center mb-5 fw-light fs-5" style="color: #82AE46">{{ __('Login') }}</h5>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -125,46 +125,56 @@
                                 <label for="floatingPassword">{{ __('Password') }}</label>
                             </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6 offset-md-4">
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-center">
+                                    <!-- Checkbox -->
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
+                                            {{ old('remember') ? 'checked' : '' }} />
+                                        <label class="form-check-label" for="remember"> {{ __('Remember Me') }} </label>
                                     </div>
+                                </div>
+
+                                <div class="col d-flex justify-content-center">
+                                    <!-- Simple link -->
+                                    @if (Route::has('password.request'))
+                                        <a href="{{ route('password.request') }}" style="color: #82AE46">
+                                            {{ __('Forgot Password?') }}
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
 
+                            <!-- Submit button -->
                             <div class="d-grid mb-2">
-                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" style="background-color: #82AE46; border-color:#82AE46"
                                     type="submit">{{ __('Login') }}</button>
                             </div>
 
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>Not a member? <a href="{{ route('register') }}" style="color: #82AE46">Register</a></p>
+                                <p>or sign up with:</p>
+                                <a href=""  type="submit" class="btn btn-link btn-floating mx-1">
+                                  <i class="fab fa-facebook-f" style="color: #82AE46"></i>
                                 </a>
-                            @endif
-                            <a class="btn btn-link" style="display: flex; float: right;" href="{{ route('register') }}">Create an account.</a>
+                            
+                                <a href="{{ route('login.google') }}" type="submit" class="btn btn-link btn-floating mx-1">
+                                  <i class="fab fa-google" style="color: #82AE46"></i>
+                                </a>
+                            
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                  <i class="fab fa-twitter" style="color: #82AE46"></i>
+                                </button>
+                            
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                  <i class="fab fa-github" style="color: #82AE46"></i>
+                                </button>
+                              </div>
 
                             {{-- <hr class="my-4"> --}}
-
-                            <div class="d-grid mb-2">
-                                <a href="{{ route('login.google') }}" class="btn btn-lg btn-success btn-login fw-bold text-uppercase" type="submit">
-                                    {{-- <i class="fab fa-google me-2"></i> --}}
-                                     Sign up with Google
-                                </a>
-                            </div>
-
-                            <div class="d-grid mb-2">
-                                <a href="" class="btn btn-lg btn-info btn-login fw-bold text-uppercase" type="submit">
-                                    {{-- <i class="fab fa-facebook-f me-2"></i> --}}
-                                     Sign up with Facebook
-                                </a>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
