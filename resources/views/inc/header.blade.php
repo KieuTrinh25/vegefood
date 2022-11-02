@@ -29,60 +29,19 @@
             <span class="oi oi-menu"></span> Menu
         </button>
 
-<<<<<<< HEAD
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Shop</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown04">
-						 		@foreach($categoryList as $category)
-								<a class="dropdown-item" href="{{ route('category.detail', $category->slug) }}">{{ $category->name }}</a>
-							 	@endforeach
-							</div>
-
-					</li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<li class="nav-item cta cta-colored"><a href="{{route('show.cart')}}" class="nav-link"><span
-								class="icon-shopping_cart"></span>[0]</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
-=======
         <div class="collapse navbar-collapse" id="ftco-nav">
-
-            {{-- <form action="{{ route('product.search') }}" method="get"> --}}
-            {{-- <input type="text" name="product_name" class="search">
-					<i class="fas fa-search"></i>
-					<input type="submit" value="search"> --}}
-            {{-- <div class="input-group">
-                    <div class="form-outline">
-                        <input type="search" id="form1" class="form-control input-search" placeholder="Search..."/>
-                        {{-- <label class="form-label" for="form1">Search</label> --}}
-            {{-- </div> --}}
-            {{-- <button type="submit" class="btn btn-primary btn-search"> --}}
-            {{-- <button type="submit" class="button-search">
-                        <i class="fas fa-search"></i>
-                    </button> --}}
-            {{-- </div> --}}
-            {{-- </form> --}}
-
-
-
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ route('product.search') }}" id="dropdown04"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="{{ route('product.search') }}">Products</a>
-                        <a class="dropdown-item" href="{{ route('show.cart') }}">Cart</a>
+                        @foreach ($categoryList as $category)
+                            <a class="dropdown-item"
+                                href="{{ route('category.detail', $category->slug) }}">{{ $category->name }}</a>
+                        @endforeach
                     </div>
+
                 </li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -95,29 +54,29 @@
                             <button type="submit" class="btn btn-search">
                                 <i class="fa fa-search"></i>
                             </button>
-                            {{-- <button type="reset" class="btn btn-reset fa fa-times"></button> --}}
                         </form>
                     </div>
                 </li>
                 <li class="nav-item cta cta-colored">
-                    <a href="{{ route('show.cart') }}" class="nav-link"><span
-                            class="icon-shopping_cart"></span>[0]</a>
-                        </li>
+                    <a href="{{ route('show.cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
+                </li>
 
-                @if(Auth::user() != null)
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" style="background: #fff; border-color:#fff"><i class="fas fa-sign-out-alt" style="color: #82AE46; font-size:25px; margin-top:10px"></i></button>
-                    </form>
-                </li>
+                @if (Auth::user() != null)
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" style="background: #fff; border-color:#fff"><i
+                                    class="fas fa-sign-out-alt"
+                                    style="color: #82AE46; font-size:25px; margin-top:10px"></i></button>
+                        </form>
+                    </li>
                 @else
-                <li>
-                    <a href="{{ route('login') }}" class="nav-link"><i class="fas fa-sign-in-alt"  style="color: #82AE46; font-size:25px; margin-top:10px"></i></a>
-                </li>
+                    <li>
+                        <a href="{{ route('login') }}" class="nav-link"><i class="fas fa-sign-in-alt"
+                                style="color: #82AE46; font-size:25px; margin-top:10px"></i></a>
+                    </li>
                 @endif
             </ul>
         </div>
     </div>
 </nav>
->>>>>>> 2e831b9 (login_view)

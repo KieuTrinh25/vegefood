@@ -102,7 +102,7 @@
                         <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">{{ __('Register') }}</h5>
+                        <h5 class="card-title text-center mb-5 fw-light fs-5" style="color: #82AE46">{{ __('Register') }}</h5>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -155,25 +155,14 @@
                             </div>
 
                             <div class="d-grid mb-2">
-                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" style="background-color: #82AE46; border-color:#82AE46"
                                     type="submit">{{ __('Register') }}</button>
                             </div>
                             @if (Route::has('login'))
-                                <a class="d-block text-center mt-2 small" href="{{ route('login') }}">
+                                <a class="d-block text-center mt-2 small" href="{{ route('login') }}" style="color: #82AE46">
                                     Have an account? Sign In</a>
                             @endif
 
-                            {{-- <div class="d-grid mb-2">
-                                <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                                    <i class="fab fa-google me-2"></i> Sign up with Google
-                                </button>
-                            </div>
-
-                            <div class="d-grid">
-                                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase" type="submit">
-                                    <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
-                                </button>
-                            </div> --}}
                         </form>
                     </div>
                 </div>
