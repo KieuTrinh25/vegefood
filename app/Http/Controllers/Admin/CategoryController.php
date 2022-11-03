@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $categoryList = resolve(ShowCategoryAction::class)->run();
 
         return view('admin.categories.index', array(
-            'categoryList' => $categoryList
+            'categoryList' => $categoryList,
         ));
     }
 
@@ -38,9 +38,10 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+
         $category = resolve(ShowCategoryAction::class)->find($id);
 
-        return view('admin.categories.edit', array('category' => $category));
+       return view('admin.categories.edit', array('category' => $category));
     }
 
     public function update(Request $request, $id)

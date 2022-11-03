@@ -18,4 +18,5 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model->where('slug', $slug)->first();
     }
+    
 }

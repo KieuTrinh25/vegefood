@@ -103,7 +103,7 @@ Route::group(['middleware' => ['auth']], function(){
   Route::get('cart', [CartController::class, 'index'])->name('show.cart');
   Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
   
-  Route::get('cart/checkout',[CartController::class, 'create'])->name('cart.create');
+  Route::get('cart/create',[CartController::class, 'create'])->name('cart.create');
   
   Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 });
@@ -122,7 +122,7 @@ Route::resource('bill', 'AdminBillController');
  * checkout 
  */
 
-Route::get('/checkout',[CheckOutController::class, 'checkout'])->name('checkout');
+// Route::get('/checkout',[CheckOutController::class, 'checkout'])->name('checkout');
 Route::get('/users/verify/{token}',[UserController::class,'verify']);
 /**
  * add to cart

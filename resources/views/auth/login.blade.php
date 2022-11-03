@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 @endsection
 
+@section('title', __("web.login_title"))
 @section('content')
     {{-- <div class="container">
         <div class="row justify-content-center">

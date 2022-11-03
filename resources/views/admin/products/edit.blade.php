@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', @trans('admin.edit_products'))
+@section('title', __("admin.edit_products"))
 
 @section('content')
     <div class="content-wrapper">
@@ -29,6 +29,7 @@
                             </div>        
                             <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
                                     <label for="exampleInputName1">Images</label>
+                                    <img src="{{ $product->getFirstMediaUrl('thumbnail') }}">
                                     <input type="file" class="form-control" name="image" placeholder="image" value="{{ old('img')}}">
                                     @if($errors->has('img'))
                                         <span class="help-block">

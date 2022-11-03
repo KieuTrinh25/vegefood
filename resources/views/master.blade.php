@@ -44,7 +44,6 @@
                 stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
-<<<<<<< HEAD
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		<link  href="../Jquery/jquery.multiselect.css" rel="stylesheet"/>
 <link  href="../Jquery/style.css" rel="stylesheet" />
@@ -85,67 +84,6 @@
 			})
 		}
 	</script>
-=======
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <link href="../Jquery/jquery.multiselect.css" rel="stylesheet" />
-    <link href="../Jquery/style.css" rel="stylesheet" />
-    <link href="../Jquery/prettify.css" rel="stylesheet" />
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js/aos.js') }}"></script>
-    <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('js/scrollax.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="{{ asset('js/google-map.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script>
-        // $(function (){
-        // 	alert('test');
-        // });
-        function add_to_card(event) {
-            event.preventDefault();
-            let urlCart = $(this).data('url');
-            // alert(urlCart);
-            $.ajax({
-                type: "GET",
-                url: urlCart,
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                }
-
-            })
-        }
-        $(function() {
-            $('.add_to_card').on('click', add_to_card)
-        })
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#sort').on('change', function() {
-                var url = $(this).val();
-                // alert(url);
-                if (url) {
-                    windown.location = url;
-                }
-                return false;
-            })
-        })
-    </script>
-
-    {{-- Search Form --}}
-    
-
->>>>>>> 2e831b9 (login_view)
 </body>
 
 </html>

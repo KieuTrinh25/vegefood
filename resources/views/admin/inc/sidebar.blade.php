@@ -7,7 +7,6 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        
         <li class="nav-item nav-category">Control</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">

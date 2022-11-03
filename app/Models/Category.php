@@ -16,6 +16,7 @@ class Category extends Model implements HasMedia
     public function products(){
         return $this->hasMany(Product::class);
     }
+    
     public static function booted(){
         static::created(function ($category){
             $category->slug = Str::slug($category->name) . '-' . $category->id;

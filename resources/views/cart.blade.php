@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Home Cart')
+@section('title', __("web.cart_title"))
 @section('content')
     <section id="home-section" class="hero">
         <div class="home-slider owl-carousel">
@@ -96,6 +96,7 @@
     <div class="container">
     <form action="{{ route('cart.store', $user->id) }}" class="info" method="post">
         @csrf
+        <input type="hidden" name="orderId" value="{{ $order->id }}">
         <div class="row justify-content-end">
             <div class="col-md-7 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
@@ -105,13 +106,13 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label for="exampleInputName1">Full Name</label>
-                                <p class="form-control text-left px-3" value ="$user->id">{{$user->name}}</p>
+                                <input name="name" class="form-control text-left px-3" value ="{{$user->name}}">
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone Number</label>
-                                <input  name="phone" type="text" class="form-control text-left px-3" placeholder="phone">
+                                <input  name="phone" value="{{ old('phone') }}" type="text" class="form-control text-left px-3" placeholder="phone">
                             </div>
                         </div>
                     </div>
@@ -119,7 +120,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <p class="form-control text-left px-3" value ="$user->id">{{$user->email}}</p>
+                                <input name="email" class="form-control text-left px-3" value ="{{$user->email}}">
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -157,7 +158,7 @@
                     <div class="row">
                         <div class="col-md-6"><h6>Ship</h6></div>
                         <div class="col-md-6">
-                        <p id="ship"  class="form-control text-left px-3"> </p>
+                        <p id="ship" class="form-control text-left px-3"> </p>
                         </div>
                     </div>
                     <div class="row">

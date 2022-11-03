@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', @trans('admin.label_all_categories'))
+@section('title', __("admin.label_all_categories"))
 
 @section('content')
     <div class="content-wrapper">

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Vegefoods Page')
+@section('title', __("web.home_title"))
 
 @section('content')
     <section id="home-section" class="hero">

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Products')
+@section('title', __("Category Page"))
 
 @section('content')
 

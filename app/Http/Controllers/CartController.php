@@ -66,8 +66,14 @@ class CartController extends Controller
         return view('cart.create', array('customerList' => $customerList));
     }
 
-    public function store(CustomerRequest $request){
+    public function store(Request $request){
+        $orderId = $request->input('orderId');
+        $order = Order::find($orderId);
+        $order->update([
+            'status' => 'checkout'
+        ]);
         $customer =  Customer::create($request->all());
+
         $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('cart.store');
     }

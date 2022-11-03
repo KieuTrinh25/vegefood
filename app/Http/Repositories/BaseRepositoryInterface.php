@@ -9,4 +9,5 @@ interface BaseRepositoryInterface{
     public function update($id, array $attributes);
     public function delete($id);
     public function findFirstByField($field, $value);
+    public function findByField($field, $operator, $value);
 }

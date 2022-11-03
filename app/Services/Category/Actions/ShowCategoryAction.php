@@ -15,17 +15,11 @@ class ShowCategoryAction extends Action
         return resolve(ShowCategoryTask::class)->run();
     }
 
-    public function find($id){
-        return resolve(ShowCategoryTask::class)->find($id);
-    }
-
-    public function getSingleCategory($id)
-    {
-        return resolve(ShowCategoryTask::class)->getSingleCategory($id);
-    }
 
     public function getCategoryBySlug($slug)
     {
         return resolve(ShowCategoryTask::class)->getCategoryBySlug($slug);
     }
+
+
 }
