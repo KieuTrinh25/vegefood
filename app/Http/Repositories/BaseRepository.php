@@ -44,7 +44,13 @@ abstract class BaseRepository implements BaseRepositoryInterface{
         }
         return false;
     }
+
     public function findFirstByField($field, $value){
         return $this->model->where($field , '=' , $value);
+    }
+
+    public function findByField($field, $operator, $value)
+    {
+        return $this->model->where($field , $operator , $value);
     }
 }

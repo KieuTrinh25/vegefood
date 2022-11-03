@@ -24,8 +24,13 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Images</th>
+<<<<<<< HEAD
                                         <th>Action</th>
                                         <th>Action</th>
+=======
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+>>>>>>> 1f3658a (product service)
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,18 +41,16 @@
                                             <td><img src="{{ $cat->getFirstMediaUrl('categories_images') }}" width="150px"
                                                     height="150px"></td>
                                             <td>
-                                                <button type="button" class="btn btn-warning"><a
-                                                        href="{{ route('admin.categories.edit', $cat->id) }}">Edit</a></button>
+                                                <a href="{{ route('admin.categories.edit', $cat->id) }}"><i class="mdi mdi-border-color"></i></a>
                                             </td>
                                             <td>
                                                 <form method="post"
                                                     action="{{ route('admin.categories.destroy', $cat->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label>
-                                                        {{-- <label class="badge badge-danger"> --}}
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </label>
+
+                                                    <button type="submit" class="btn"><i class="mdi mdi-delete"></i></button>
+
                                                 </form>
                                             </td>
                                         </tr>

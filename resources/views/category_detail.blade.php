@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Vegefoods Page')
+@section('title', __("Category_Detail Page"))
 
 @section('content')
 
@@ -39,11 +39,11 @@
                 @foreach ($productList as $product)
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product">
-                            <a href="{{ route('product.detail', $product->id) }}" class="img-prod"><img class="img-fluid"
-                                    src="{{ $product->getFirstMediaUrl('thumbnail') }}" alt="Colorlib Template">
-                                <span class="status">30%</span>
-                                <div class="overlay"></div>
-                            </a>
+                        <a href="{{ route('product.detail', $product->slug) }}" class="img-prod"><img src="{{ $product->getFirstMediaUrl('thumbnail') }}" class="img-fluid" alt="Colorlib Template">
+								<span class="status">30%</span>
+								<div class="overlay"></div>
+								
+							</a>
                             <div class="text py-3 pb-4 px-3 text-center">
                                 <h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
                                 <div class="d-flex">

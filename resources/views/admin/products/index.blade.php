@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', @trans('admin.label_all_products'))
+@section('title', __("admin.label_all_products"))
 
 @section('content')
     <div class="content-wrapper">
@@ -12,6 +12,11 @@
                         <p class="card-description">
                             Add class <code>.table</code>
                         </p>
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -24,25 +29,26 @@
                                         <th>Images</th>
                                         <th>Description</th>
                                         <th>Category</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($productList as $product)
                                         <tr>
                                             <td>
-                                                <form method="post"
-                                                    action="{{ route('admin.products.destroy', $product->id) }}">
+                                                <a href="{{ route('admin.products.edit', $product->slug) }}"><i class="mdi mdi-border-color"></i></a>
+                                            </td>
+                                            <td>
+                                                <form method="post" action="{{ route('admin.products.destroy', $product->slug) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    {{-- <label class="badge badge-danger"> --}}
-                                                    <label>
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </label>
+                                                    <button type="submit" class="btn"><i class="mdi mdi-delete"></i></button>
                                                 </form>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning"><a
-                                                        href="{{ route('admin.products.edit', $product->id) }}">Edit</a></button>
+                                                        href="{{ route('admin.products.edit', $product->slug) }}">Edit</a></button>
                                             </td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Product-Single')
+@section('title', __("web.product_detail_title"))
 @section('stylesheet')
 <link rel="stylesheet" href="{{ asset('./css/animate.css')}}">
 <link rel="stylesheet" href="{{ asset('./css/flaticon.css')}}">
@@ -78,7 +78,7 @@
           	</div>
 				<input type="hidden" name="product_id" value="{{$product->id}}">
 				<input type="submit" value="Add to Cart"
-				class="btn btn-black py-3 px-5 add_to_card">
+				class="btn btn-success py-3 px-5 add_to_card">
 			</div>
 		</div>
 	</div>
