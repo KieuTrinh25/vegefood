@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
@@ -82,6 +83,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     
+    /**
+     * admin vouchers
+     *
+     */
+    Route::get('/vouchers', [VoucherController::class, 'index'])->name('admin.vouchers.index');
+
+    Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('admin.vouchers.create');
+    Route::post('/vouchers', [VoucherController::class, 'store'])->name('admin.vouchers.store');
+
+    Route::get('/vouchers/{id}/edit', [VoucherController::class, 'edit'])->name('admin.vouchers.edit');
+    Route::put('/vouchers/{id}', [VoucherController::class, 'update'])->name('admin.vouchers.update');
+    
+    Route::delete('/vouchers/{id}', [VoucherController::class, 'destroy'])->name('admin.vouchers.destroy');
+
+    Route::get('/vouchers/{id}', [VoucherController::class, 'show'])->name('admin.vouchers.show');
 
     
 });

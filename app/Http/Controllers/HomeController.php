@@ -17,6 +17,7 @@ class HomeController extends Controller
     {
         $productList = resolve(ShowProductAction::class)->run();
         return view("home", array("productList" => $productList));
+       
     }
 
     public function productDetail($slug)
