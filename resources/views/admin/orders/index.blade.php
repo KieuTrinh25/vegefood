@@ -5,6 +5,27 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="statistics-details d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="statistics-title">Tổng số đơn hàng</p>
+                            <h3 class="rate-percentage">{{$order_count}}</h3>
+                            
+                        </div>
+                        <div>
+                            <p class="statistics-title">Tổng số đơn pending</p>
+                            <h3 class="rate-percentage">{{$number_pending}}</h3>
+                            
+                        </div>
+                        <div>
+                            <p class="statistics-title">Tổng số đơn finish</p>
+                            <h3 class="rate-percentage">{{$number_finish}}</h3>
+                        </div>            
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
