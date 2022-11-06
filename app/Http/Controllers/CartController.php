@@ -50,15 +50,23 @@ class CartController extends Controller
         return view('cart', ['order' => $order,'locationList' => $locationList, 'total' => $total, 'user' => $user]);
 
     }
-
+    public function updateOrderDetail(Request $request){
+        $orderDetail = OrderDetail::findOrFail($request->input('orderDetailId'));
+        $orderDetail->quantity += $request->input('quantity');
+        if($orderDetail->quantity < 1){
+            $orderDetail->quantity = 1;
+        }
+        $orderDetail->save();
+        $request->session()->flash('message','Deleted succesfully!'); 
+        
+        return redirect()->route('show.cart');
+    }
     public function deleteOrderDetail(Request $request){
         $id = $request->input('order_detail_id');
         OrderDetail::destroy($id);
         $request->session()->flash('message','Deleted succesfully!'); 
 
-        $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
-        return view('cart', ['order' => $order]);
+        return redirect()->route('show.cart');
     }
 
     public function create(){

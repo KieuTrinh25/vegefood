@@ -22,4 +22,7 @@ class OrderDetail extends Model
     public function vouchers(){
         return $this->belongsTo(Voucher::class);
     }
+    public function total(){
+        return $this->product->price * $this->quantity;
+    }
 }

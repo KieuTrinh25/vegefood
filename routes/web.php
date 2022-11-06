@@ -97,12 +97,15 @@ Route::get('login/google', function(){
 })->name('login.google');
 
 Route::get('callback/google', [LoginController::class, 'handleGoogleCallback']);
+/**
+ * cart
+ */
 
 Route::group(['middleware' => ['auth']], function(){
   Route::post('product/add-to-cart',[CartController::class, 'addToCart'])->name('addToCart');
   Route::get('cart', [CartController::class, 'index'])->name('show.cart');
   Route::post('cart/delete', [CartController::class, 'deleteOrderDetail'])->name('cart.delete');
-  
+  Route::post('cart/update', [CartController::class, 'updateOrderDetail'])->name('cart.update');
   Route::get('cart/create',[CartController::class, 'create'])->name('cart.create');
   
   Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
@@ -124,7 +127,4 @@ Route::resource('bill', 'AdminBillController');
 
 // Route::get('/checkout',[CheckOutController::class, 'checkout'])->name('checkout');
 Route::get('/users/verify/{token}',[UserController::class,'verify']);
-/**
- * add to cart
- */
 
