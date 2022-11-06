@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
+        $this->authorize('viewAny', User::class);
         $userList = User::all();
         return view('admin.users.index', array(
             'userList' => $userList
         ));
     }
     public function destroy($id){
+        $this->authorize('delete', User::class);
         User::destroy($id);
         return redirect()->route('admin.users.index');
     }

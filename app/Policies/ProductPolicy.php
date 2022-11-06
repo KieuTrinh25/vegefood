@@ -30,7 +30,7 @@ class ProductPolicy
      */
     public function view(User $user, Product $product)
     {
-        //
+        return $user->role == "admin" || $user->role == "manager";
     }
 
     /**
@@ -41,7 +41,7 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role == "admin" || $user->role == "manager";
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product)
     {
-        
+        return $user->role == "admin" || $user->role == "manager"; 
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        //
+        return $user->role == "admin" || $user->id == $product->user_id;
     }
 
     /**
@@ -77,7 +77,6 @@ class ProductPolicy
      */
     public function restore(User $user, Product $product)
     {
-        //
     }
 
     /**

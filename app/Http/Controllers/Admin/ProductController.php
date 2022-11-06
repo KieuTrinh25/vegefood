@@ -16,6 +16,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Product::class);
         $productList = Product::with('category')->get();
         return view('admin.products.index', array(
             'productList' => $productList,
@@ -24,12 +25,14 @@ class ProductController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Product::class);
         $categoryList = resolve(ShowCategoryAction::class)->run();
         return view('admin.products.create', array('categoryList' => $categoryList));
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Product::class);
         $product = resolve(CreateProductAction::class)->create($request->all());
         $product->addMediaFromRequest('image')->usingName($product->name)->toMediaCollection('thumbnail');
         if ($request->hasFile('photo')) {
@@ -43,7 +46,7 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-
+        $this->authorize('update', Product::class);
         $product = resolve(ShowProductAction::class)->getSingleProduct($id);
         $categoryList = resolve(ShowCategoryAction::class)->run();
 
@@ -52,6 +55,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('update', Product::class);
         $product = resolve(UpdateProductAction::class)->update($id, $request->all());
 
         $product->update($request->all());
@@ -77,6 +81,8 @@ class ProductController extends Controller
 
     public function destroy($id, Request $request)
     {
+        $this->authorize('delete', Product::class);
+
         $bool = resolve(DeleteProductAction::class)->delete($id);
         if ($bool) {
             $request->session()->flash('status', 'Delete Success');
