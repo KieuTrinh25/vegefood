@@ -77,6 +77,7 @@
                                                         </button>
                                                     </form>
                                             </td>
+<<<<<<< HEAD
                                             <td class="quantity">
 
                                                 
@@ -95,10 +96,8 @@
                                                 </form>
 
                                             </td>
-                                            <td class="product-subtotal"><span class="amount">
-                                                    {{ currency_format($orderDetail->total()) }}
-                                                </span></td>
-                                            <td class="product-remove">
+                                            <td class="product-subtotal"><span class="amount">{{ currency_format($orderDetail->total()) }}</span></td>
+                                                <td class="product-remove">
                                                 <form action="{{ route('cart.delete') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="order_detail_id"

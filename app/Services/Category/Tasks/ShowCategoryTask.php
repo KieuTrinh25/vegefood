@@ -18,6 +18,10 @@ class ShowCategoryTask extends Task
         return $this->repository->list();
     }
 
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
     public function getCategoryBySlug($slug)
     {
         return $this->repository->getCategoryBySlug($slug);

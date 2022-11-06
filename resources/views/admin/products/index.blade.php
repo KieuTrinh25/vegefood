@@ -21,8 +21,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        
-                                        
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
@@ -37,8 +35,6 @@
                                 <tbody>
                                     @foreach ($productList as $product)
                                         <tr>
-                                           
-                                           
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->quantity }}</td>
@@ -47,20 +43,16 @@
                                             <td>{{ $product->description }}</td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>
-                                                <a href="{{ route('admin.products.edit', $product->slug) }}"><i class="mdi mdi-border-color"></i></a>
+                                                <a href="{{ route('admin.products.edit', $product->id) }}"><i class="mdi mdi-border-color"></i></a>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-warning"><a
-                                                        href="{{ route('admin.products.edit', $product->slug) }}">Edit</a></button>
-                                            </td>
-                                            <td>
-                                                <form method="post" action="{{ route('admin.products.destroy', $product->slug) }}">
+
+                                                <form method="post" action="{{ route('admin.products.destroy', $product->id) }}">
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit" class="btn"><i class="mdi mdi-delete"></i></button>
                                                 </form>
                                             </td>
-                                            
                                         </tr>
                                     @endforeach
 

@@ -24,8 +24,6 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Images</th>
-                                        {{-- <th>Action</th>
-                                        <th>Action</th> --}}
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
