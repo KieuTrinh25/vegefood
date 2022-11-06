@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', __("admin.label_all_products"))
+@section('title', __('admin.label_all_products'))
 
 @section('content')
     <div class="content-wrapper">
@@ -12,11 +12,6 @@
                         <p class="card-description">
                             Add class <code>.table</code>
                         </p>
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -27,7 +22,6 @@
                                         <th>Images</th>
                                         <th>Description</th>
                                         <th>Category</th>
-                                        <th>Action</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
@@ -46,13 +40,12 @@
                                                 <a href="{{ route('admin.products.edit', $product->id) }}"><i class="mdi mdi-border-color"></i></a>
                                             </td>
                                             <td>
-
                                                 <form method="post" action="{{ route('admin.products.destroy', $product->id) }}">
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit" class="btn"><i class="mdi mdi-delete"></i></button>
-                                                </form>
                                             </td>
+                                            
                                         </tr>
                                     @endforeach
 
