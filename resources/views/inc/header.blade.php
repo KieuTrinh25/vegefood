@@ -57,17 +57,17 @@
                         </form>
                     </div>
                 </li>
-                <li class="nav-item cta cta-colored">
-                    <a href="{{ route('show.cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
+                <li class="nav-item ">
+                    <a href="{{ route('show.cart') }}" class="nav-link"><span class="icon-shopping_cart" style="color: #82AE46; font-size:15px; margin-top:10px"></span>[0]</a>
                 </li>
 
                 @if (Auth::user() != null)
                     <li>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <button type="submit" style="background: #fff; border-color:#fff"><i
                                     class="fas fa-sign-out-alt"
-                                    style="color: #82AE46; font-size:25px; margin-top:10px"></i></button>
+                                    style="color: #82AE46; font-size:15px; margin-top:10px"></i></button>
                         </form>
                     </li>
                 @else

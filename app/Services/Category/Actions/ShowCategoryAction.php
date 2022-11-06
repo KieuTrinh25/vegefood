@@ -14,7 +14,10 @@ class ShowCategoryAction extends Action
     {
         return resolve(ShowCategoryTask::class)->run();
     }
-
+    public function find($id)
+    {
+        return resolve(ShowCategoryTask::class)->find($id);
+    }
 
     public function getCategoryBySlug($slug)
     {

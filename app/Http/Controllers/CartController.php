@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
@@ -10,77 +9,70 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller 
+class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
         $order = Order::where('user_id', Auth::user()->id)->where('status', 'unpay')->first();
-        if($order == null) {
+        if ($order == null) {
             $order = Order::create(
                 array(
                     'code' => randomOrderCode(),
                     'user_id' => Auth::user()->id,
-                    'status' => 'unpay'
+                    'status' => 'unpay',
                 )
             );
         }
 
         $orderDetail = $order->orderDetails()->where('product_id', $request->input('product_id'))->first();
-        if($orderDetail == null){
+        if ($orderDetail == null) {
             $orderDetail = new OrderDetail();
             $orderDetail->product_id = $request->input('product_id');
             $orderDetail->quantity = $request->input('quantity');
             $order->orderDetails()->save($orderDetail);
-        }else{
+        } else {
             $orderDetail->quantity += $request->input('quantity');
             $orderDetail->save();
         }
         return redirect()->route('show.cart');
-    }  
+    }
 
-    public function index() {
+    public function index()
+    {
         $user = Auth::user();
         $locationList = Location::all();
         $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
         $total = 0;
-        foreach($order->orderDetails  as $orderDetail){
-            $total += $orderDetail->product->price * $orderDetail->quantity   
+        foreach ($order->orderDetails as $orderDetail) {
+            $total += $orderDetail->product->price * $orderDetail->quantity
             ;
         }
-        return view('cart', ['order' => $order,'locationList' => $locationList, 'total' => $total, 'user' => $user]);
+        return view('cart', ['order' => $order, 'locationList' => $locationList, 'total' => $total, 'user' => $user]);
 
     }
-    public function updateOrderDetail(Request $request){
-        $orderDetail = OrderDetail::findOrFail($request->input('orderDetailId'));
-        $orderDetail->quantity += $request->input('quantity');
-        if($orderDetail->quantity < 1){
-            $orderDetail->quantity = 1;
-        }
-        $orderDetail->save();
-        $request->session()->flash('message','Deleted succesfully!'); 
-        
-        return redirect()->route('show.cart');
-    }
-    public function deleteOrderDetail(Request $request){
+
+    public function deleteOrderDetail(Request $request)
+    {
         $id = $request->input('order_detail_id');
         OrderDetail::destroy($id);
-        $request->session()->flash('message','Deleted succesfully!'); 
-
+        $request->session()->flash('message', 'Deleted succesfully!');
         return redirect()->route('show.cart');
     }
 
-    public function create(){
+    public function create()
+    {
         $customerList = Customer::all();
         return view('cart.create', array('customerList' => $customerList));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $orderId = $request->input('orderId');
         $order = Order::find($orderId);
         $order->update([
-            'status' => 'checkout'
+            'status' => 'checkout',
         ]);
-        $customer =  Customer::create($request->all());
+        $customer = Customer::create($request->all());
 
         $request->session()->flash('status', 'them thanh cong');
         return redirect()->route('cart.store');
