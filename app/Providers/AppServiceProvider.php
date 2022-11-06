@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     protected $repositories = [
+        \App\Http\Repositories\Voucher\VoucherRepositoryInterface::class => \App\Http\Repositories\Voucher\VoucherRepository::class,
         \App\Http\Repositories\Product\ProductRepositoryInterface::class => \App\Http\Repositories\Product\ProductRepository::class,
         \App\Http\Repositories\Category\CategoryRepositoryInterface::class => \App\Http\Repositories\Category\CategoryRepository::class,
     ];

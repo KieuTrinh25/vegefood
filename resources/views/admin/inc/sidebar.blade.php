@@ -68,6 +68,22 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#voucher" aria-expanded="false"
+                aria-controls="voucher">
+                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                <span class="menu-title">Vouchers</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="voucher">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.vouchers.index') }}">All</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.vouchers.create') }}">Add</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item nav-category">pages</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">

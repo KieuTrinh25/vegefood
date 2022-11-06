@@ -1,31 +1,10 @@
 @extends('admin.master')
 
-@section('title', __("admin.label_all_order_details"))
+@section('title', @trans('admin.label_all_vouchers'))
 
 @section('content')
     <div class="content-wrapper">
         <div class="row">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="statistics-details d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="statistics-title">Tổng số đơn hàng</p>
-                            <h3 class="rate-percentage">{{$order_count}}</h3>
-                            
-                        </div>
-                        <div>
-                            <p class="statistics-title">Tổng số đơn pending</p>
-                            <h3 class="rate-percentage">{{$number_pending}}</h3>
-                            
-                        </div>
-                        <div>
-                            <p class="statistics-title">Tổng số đơn finish</p>
-                            <h3 class="rate-percentage">{{$number_finish}}</h3>
-                        </div>            
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -33,28 +12,39 @@
                         <p class="card-description">
                             Add class <code>.table</code>
                         </p>
+                        @if(session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Code</th>
-                                        <th>Status</th>
-                                        <th>User_id</th>
+                                        <th>Discount</th>
+                                        <th>Quantity</th>
+                                        <th>Quantity_used</th>
+                                        <th>Time_from</th>
+                                        <th>Time_end</th>
                                         <th>#</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orderList as $order)
+                                    @foreach ($voucherList as $voucher)
                                         <tr>
-                                            <td><a href="{{ route( 'admin.orders.show', $order->code) }}">{{ $order->code }}</a></td>
-                                            <td>{{ $order->status }}</td>
-                                            <td>{{ $order->user->name }}</td>
+                                            <td>{{ $voucher->code }}</td>
+                                            <td>{{ $voucher->discount }}</td>
+                                            <td>{{ $voucher->quantity }}</td>
+                                            <td>{{ $voucher->quantity_used }}</td>
+                                            <td>{{ $voucher->time_from }}</td>
+                                            <td>{{ $voucher->time_end }}</td>
                                             <td>
-                                                <a href="{{ route('admin.orders.edit', $order->id) }}">Edit</a>
+                                                <a href="{{ route('admin.vouchers.edit', $voucher->id) }}">Edit</a>
                                             </td>
                                             <td>
-                                                <form method="post" action="{{ route('admin.orders.destroy', $order->id) }}">
+                                                <form method="post" action="{{ route('admin.vouchers.destroy', $voucher->id) }}">
                                                     @method('delete')
                                                     @csrf
                                                     <label class="badge badge-danger">

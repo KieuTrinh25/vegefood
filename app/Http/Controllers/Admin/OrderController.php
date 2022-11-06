@@ -11,45 +11,52 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    protected $repository;
-
-    public function __construct(OrderRepositoryInterface $repository)
+    public function index()
     {
-        $this->repository = $repository;
-    }
+        $orderList = Order::all();
+        $order_count = Order::count();
+        $number_pending = 0;
+        $number_finish = 0;
+        foreach ($orderList as $order) {
+            if ($order->status == 'pending')
+                $number_pending++;
+            if ($order->status == 'finish')
+                $order_count = Order::count();
+            $number_finish++;
+        }
 
-    public function index(){
-        $orderList = $this->repository->list();
-        return view('admin.orders.index', array(
+
+        return view('admin.orders.index', compact('number_finish','number_pending','order_count'),array(
             'orderList' => $orderList
+
         ));
     }
 
 
-    public function edit($id){
-        // $order = Order::find($id);
-        $order = $this->repository->find($id);
-        $orderList = $this->repository->list();
+    public function edit($id)
+    {
+        $order = Order::find($id);
+        $orderList = Order::all();
         return view('admin.orders.edit', array('order' => $order, 'orderList' => $orderList));
     }
 
-    public function update(Request $request, $id){
-        $order = $this->repository->find($id);
-        $order = $this->repository->update($id, $request->all());
-        // $order->update( $request->all());
+    public function update(Request $request, $id)
+    {
+        $order = Order::find($id);
+        $order->update($request->all());
         return redirect()->route('admin.orders.index');
     }
 
-    public function destroy($id){
-        // Order::destroy($id);
-        $order = $this->repository->delete($id);
+    public function destroy($id)
+    {
+        Order::destroy($id);
         return redirect()->route('admin.orders.index');
     }
 
-    public function show($id){       
-        // $orderDetail = orderDetail::find($id);
-        $orderDetail = $this->orderDetailRepository->find($id);
-    //    dd($orderDetail);
-        return view('admin.orders.show', array('orderDetail' => $orderDetail)); 
+    public function show($id)
+    {
+        $orderDetail = orderDetail::find($id);
+        //    dd($orderDetail);
+        return view('admin.orders.show', array('orderDetail' => $orderDetail));
     }
 }
