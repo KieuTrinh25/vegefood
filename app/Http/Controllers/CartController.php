@@ -48,7 +48,7 @@ class CartController extends Controller
             ;
         }
         return view('cart', ['order' => $order, 'locationList' => $locationList, 'total' => $total, 'user' => $user]);
-
+         
     }
 
     public function deleteOrderDetail(Request $request)

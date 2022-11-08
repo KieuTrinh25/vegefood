@@ -27,7 +27,6 @@
                                         <th>Images</th>
                                         <th>Description</th>
                                         <th>Category</th>
-                                        <th>Action</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
