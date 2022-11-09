@@ -18,7 +18,7 @@ class OrderPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role == "admin" ;
+        return $user->role == "admin"||$user->role == "manager" ;
     }
 
     /**

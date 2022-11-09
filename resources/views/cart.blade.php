@@ -77,7 +77,6 @@
                                                         </button>
                                                     </form>
                                             </td>
-<<<<<<< HEAD
                                             <td class="quantity">
 
                                                 
