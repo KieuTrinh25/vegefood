@@ -179,6 +179,22 @@
                     </div>
                 </div>
                 <div class="col-md-5 mt-5 cart-wrap ftco-animate">
+                    <div class="list-voucher mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Code</h3>
+                                @foreach($voucherList as $voucher)
+                                    <p>{{$voucher->code}}</p>
+                                @endforeach
+                            </div>
+                            <div class="col-md-6">
+                            <h3>Discount</h3>
+                                @foreach($voucherList as $voucher)
+                                    <p>{{$voucher->discount}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                     <div class="cart-total mb-3">
                         <h3>Cart Totals</h3>
                         <div class="row">
