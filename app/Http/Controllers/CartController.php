@@ -37,7 +37,17 @@ class CartController extends Controller
         }
         return redirect()->route('show.cart');
     }
+    public function updateOrderDetail(Request $request){
+        $orderDetail = OrderDetail::findOrFail($request->input('orderDetailId'));
+        $orderDetail->quantity += $request->input('quantity');
+        if($orderDetail->quantity < 1){
+            $orderDetail->quantity = 1;
+        }
+        $orderDetail->save();
+        $request->session()->flash('message','Deleted succesfully!'); 
 
+        return redirect()->route('show.cart');
+    }
     public function index()
     {
         $user = Auth::user();
