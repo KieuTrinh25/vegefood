@@ -79,12 +79,33 @@
 				url: 'http://localhost:8000/api/location?code=' + code,
 				dataType:'json',
 				success: function(data){
-					$('#ship').text(data.ship)
+					$('#ship').val(data.ship)
+					$('#ship_label').text(current_format(data.ship))
+					total_payment()
 				}
 
 			})
 		}
+		function total_payment(){
+			let ship = $('#ship').val()
+			let total = $('#total').val()
+			let total_payment = Number(ship) + Number(total) 
+			$('#total_payment').val(total_payment)
+			$('#total_payment_label').text(current_format(total_payment)) 
+
+		}
+		
+		function current_format(money){
+			return Intl.NumberFormat("vi-VN", {
+				style: 'currency', 
+				currency: 'VND',
+				useGrouping: true,
+				maximumSignificantDigits: 3,
+			}).format(money)
+		}
+		
 	</script>
+	
 </body>
 
 </html>

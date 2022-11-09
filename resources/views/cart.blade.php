@@ -77,7 +77,6 @@
                                                         </button>
                                                     </form>
                                             </td>
-<<<<<<< HEAD
                                             <td class="quantity">
 
                                                 
@@ -180,6 +179,22 @@
                     </div>
                 </div>
                 <div class="col-md-5 mt-5 cart-wrap ftco-animate">
+                    <div class="list-voucher mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Code</h3>
+                                @foreach($voucherList as $voucher)
+                                    <p>{{$voucher->code}}</p>
+                                @endforeach
+                            </div>
+                            <div class="col-md-6">
+                            <h3>Discount</h3>
+                                @foreach($voucherList as $voucher)
+                                    <p>{{$voucher->discount}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                     <div class="cart-total mb-3">
                         <h3>Cart Totals</h3>
                         <div class="row">
@@ -198,15 +213,26 @@
                                 <h6>Ship</h6>
                             </div>
                             <div class="col-md-6">
-                                <p id="ship" class="form-control text-left px-3"> </p>
+                                <span disabled="disabled" id="ship_label" class="form-control text-left px-3"> </span> 
+                                <input type="hidden" id="ship" class="form-control text-left px-3">  
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Totals</h4>
+                                <h4>Total</h4>
                             </div>
                             <div class="col-md-6">
-                                <p id="total" class="form-control text-left px-3">{{ currency_format($total) }}</p>
+                                <span  id="total_label" class="form-control text-left px-3" >{{ currency_format($total) }} </span>
+                                <input type="hidden" id="total" class="form-control text-left px-3" value="{{ $total }}"> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Total Payments</h4>
+                            </div>
+                            <div class="col-md-6">
+                                 <span id="total_payment_label" class="form-control text-left px-3" > </span>
+                                 <input type="hidden" id="total_payment" class="form-control text-left px-3" value="{{ $total }}"> 
                             </div>
                         </div>
                     </div>

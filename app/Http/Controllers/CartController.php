@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,14 +42,15 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $locationList = Location::all();
+        $voucherList = Voucher::all();
         $order = Order::where('user_id', $user->id)->where('status', config('order.unpay'))->first();
         $total = 0;
         foreach ($order->orderDetails as $orderDetail) {
             $total += $orderDetail->product->price * $orderDetail->quantity
             ;
         }
-        return view('cart', ['order' => $order, 'locationList' => $locationList, 'total' => $total, 'user' => $user]);
-
+        return view('cart', ['order' => $order, 'locationList' => $locationList, 'total' => $total, 'user' => $user, 'voucherList' => $voucherList]);
+         
     }
 
     public function deleteOrderDetail(Request $request)
