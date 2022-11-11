@@ -19,6 +19,7 @@
                                         <th>Id</th>
                                         <th>Code</th>
                                         <th>Product</th>
+                                        <th>Images</th>
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Total</th>
@@ -30,6 +31,8 @@
                                         <td>{{ $orderDetail->id }}</td>
                                         <td>{{ $orderDetail->order->code }}</td>
                                         <td>{{ $orderDetail->product->name }}</td>
+                                        <td><img src="{{ $orderDetail->product->getFirstMediaUrl('thumbnail') }}" width="150px"
+                                            height="150px"></td>
                                         <td>{{ $orderDetail->quantity }}</td>
                                         <td>{{ $orderDetail->product->price }}</td>
                                         <td>{{ ($orderDetail->product->price) * ($orderDetail->quantity) }}</td>

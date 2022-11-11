@@ -45,8 +45,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index');
     }
     public function edit($id)
-    {
-        $this->authorize('update', Product::class);
+    {       
         $product = resolve(ShowProductAction::class)->getSingleProduct($id);
         $categoryList = resolve(ShowCategoryAction::class)->run();
 
@@ -55,10 +54,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->authorize('update', Product::class);
-        $product = resolve(UpdateProductAction::class)->update($id, $request->all());
+        $this->authorize('update', Product::find($id));
 
-        $product->update($request->all());
+        $product = resolve(UpdateProductAction::class)->update($id, $request->all());
 
         if ($request->hasFile('image')) {
             $product->clearMediaCollection('thumbnail');
