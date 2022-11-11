@@ -47,21 +47,21 @@
                                 <tbody>
                                     @foreach ($orderList as $order)
                                         <tr>
-                                            <td><a href="{{ route( 'admin.orders.show', $order->code) }}">{{ $order->code }}</a></td>
+                                            <td><a href="{{ route( 'admin.orders.show', $order->id) }}">{{ $order->code }}</a></td>
                                             <td>{{ $order->status }}</td>
                                             <td>{{ $order->user->name }}</td>
+
                                             <td>
-                                                <a href="{{ route('admin.orders.edit', $order->id) }}">Edit</a>
+                                                <a href="{{  route('admin.orders.edit', $order->id) }}"><i class="mdi mdi-border-color"></i></a>
                                             </td>
                                             <td>
-                                                <form method="post" action="{{ route('admin.orders.destroy', $order->id) }}">
+                                                <form method="post" action="{{  route('admin.orders.destroy', $order->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <label class="badge badge-danger">
-                                                        <button type="submit">Delete</button>
-                                                    </label>
-                                                </form>
+                                                    <button type="submit" class="btn"><i class="mdi mdi-delete"></i></button>
                                             </td>
+
+                                         
                                         </tr>
                                     @endforeach
 

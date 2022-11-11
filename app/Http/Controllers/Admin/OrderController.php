@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Services\Order\Actions\DeleteOrderAction;
 use App\Services\Order\Actions\ShowOrderAction;
 use App\Services\Order\Actions\UpdateOrderAction;
+use App\Services\OrderDetail\Actions\ShowOrderDetailAction;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -62,7 +63,7 @@ class OrderController extends Controller
     public function show($id)
     {
 
-        $orderDetail = resolve(ShowOrderAction::class)->find($id);
+        $orderDetail = resolve(ShowOrderDetailAction::class)->find($id);
         // $orderDetail = orderDetail::find($id);
         //    dd($orderDetail);
         return view('admin.orders.show', array('orderDetail' => $orderDetail));
