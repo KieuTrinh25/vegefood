@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Product;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
- 
+
     public function index()
     {
         $productList = resolve(ShowProductAction::class)->run();
@@ -26,7 +26,6 @@ class HomeController extends Controller
         $productList = resolve(ShowProductAction::class)->run();
 
         return view("product_detail", array(
-
             "product" => $product,
             "productList" => $productList,
         ));
@@ -35,7 +34,7 @@ class HomeController extends Controller
     public function categoryDetail(Request $request, $slug)
     {
         try {
-            $category = Category::where("slug", $slug)->firstOrFail();
+            $category = resolve(ShowCategoryAction::class)->getCategoryBySlug($slug);
         } catch (ModelNotFoundException $ex) {
             redirect()->route("category.notfound");
         }
@@ -46,7 +45,7 @@ class HomeController extends Controller
             $order_by = $request->has("order_by") ? $request->get("order_by") : "asc";
             $productList = Product::where("slug", $slug)->orderBy($sort_by, $order_by)->firstOrFail();
         } else {
-            $productList = $category->products;
+            $productList = $category->products()->paginate(12);
         }
 
         return view(
@@ -61,8 +60,8 @@ class HomeController extends Controller
 
     public function productSearch(Request $request)
     {
-        $productName = $request->input("productName");
-        $productList = resolve(ShowProductAction::class)->getProductByName("%" . $productName . "%")->get();
+        $productName = $request->input("search");
+        $productList = resolve(ShowProductAction::class)->getProductByName($productName)->paginate(12);
 
         $categoryList = resolve(ShowCategoryAction::class)->run();
 

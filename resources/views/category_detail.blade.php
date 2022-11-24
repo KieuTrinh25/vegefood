@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', __("Category_Detail Page"))
+@section('title', __('category.page.title'))
 
 @section('content')
 
@@ -10,7 +10,9 @@
                     <ul class="product-category">
                         <li><a href="#" class="active">All</a></li>
                         @foreach ($categoryList as $cat)
-                            <li><a href="{{ route('category.detail', $cat->id) }}">{{ $cat->name }}</a></li>
+                            <li>
+                                <a href="{{ route('category.detail', $cat->id) }}">{{ $cat->name }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -20,16 +22,16 @@
                     <label for="amount">Sắp xếp theo</label>
                     <form action="{{ route('category.detail', $category->id) }}" method="get">
                         <div class="filter">
-                            <select name="sort_by" id="sort" class="form-select">
+                            <select name="sort_by" id="sort" class="form-select btn btn-outline-success ml-2">
                                 <option value="">--Lọc--</option>
                                 <option value="price">--Giá--</option>
                                 <option value="name">--Lọc theo tên--</option>
                             </select>
-                            <select name="order_by" id="sort" class="form-select">
+                            <select name="order_by" id="sort" class="form-select btn btn-outline-success ml-2">
                                 <option value="asc">--tăng dần--</option>
                                 <option value="desc">--giảm dần--</option>
                             </select>
-                            <button type="submit" class="btn btn-primary">Filter</button>
+                            <button type="submit" class="btn btn-primary ml-2">Filter</button>
                         </div>
                     </form>
                 </div>
@@ -39,17 +41,20 @@
                 @foreach ($productList as $product)
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product">
-                        <a href="{{ route('product.detail', $product->slug) }}" class="img-prod"><img src="{{ $product->getFirstMediaUrl('thumbnail') }}" class="img-fluid" alt="Colorlib Template">
-								<span class="status">30%</span>
-								<div class="overlay"></div>
-								
-							</a>
+                            <a href="{{ route('product.detail', $product->slug) }}" class="img-prod">
+                                <img src="{{ $product->getFirstMediaUrl('thumbnail') }}" class="img-fluid"
+                                    alt="Colorlib Template">
+                                <span class="status">30%</span>
+                                <div class="overlay"></div>
+                            </a>
                             <div class="text py-3 pb-4 px-3 text-center">
                                 <h3><a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span
-                                                class="price-sale">${{ $product->price }}</span></p>
+                                        <p class="price">
+                                            <span class="mr-2 price-dc">$120.00</span>
+                                            <span class="price-sale">${{ $product->price }}</span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="bottom-area d-flex px-3">
@@ -72,7 +77,11 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-5">
+
+            {{ $productList->links('pagination::custom-pagination') }}
+            {{-- {{ $productList->links() }} --}}
+
+            {{-- <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
                         <ul>
@@ -86,7 +95,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

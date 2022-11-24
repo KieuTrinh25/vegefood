@@ -26,6 +26,6 @@ class ShowProductTask extends Task{
     }
 
     public function getProductByName($name){
-        return  $this->repository->findByField("name", "like", $name);
+        return  $this->repository->findByField("name", "like", "%$name%");
     }
 }

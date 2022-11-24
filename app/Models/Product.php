@@ -27,6 +27,5 @@ class Product extends Model implements HasMedia
             $product->slug = Str::slug($product->name) . '-' . $product->id;
             $product->save();
         });
-        
     }
 }
