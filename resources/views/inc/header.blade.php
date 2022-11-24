@@ -33,7 +33,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="{{ route('product.search') }}" id="dropdown04" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         @foreach ($categoryList as $category)

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', __("Category Page"))
+@section('title', __("Product Page"))
 
 @section('content')
 
@@ -57,7 +57,7 @@
           </div>
         </div> --}}
 
-		{{ $productList->links() }}
+		{{ $productList->links('pagination::bootstrap-5') }}
 		
     	</div>
     </section>
